@@ -15,6 +15,26 @@
     border: 1px solid black;
 }
 
+#landing-img {
+    display: inline-block;
+    height: 100%;
+    width: 80px;
+}
+
+
+#landing-title-box {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    border: 1px solid black;
+}
+
+#landing-logo-text {
+    display: inline;
+    font-family: 'Lora', serif;
+    font-size: 30px;
+}
 
 .left-nav {
     display: flex;
@@ -23,10 +43,52 @@
     border: 1px solid red;
 }
 
-#landing-logo {
-    width: 32%;
+#landing-links-left {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
     height: 100%;
-    border: 1px solid black;
+    border: 1px solid white;
+}
+
+.landing-link-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.landing-link {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.each-link-hovered {
+    color: #00a82d;
+    transition: all 0.1s ease-in-out;
+}
+
+.link-hovered {
+    border-bottom: 3px solid #00a82d;
+    transition: all 0.1s ease-in-out;
+}
+
+.arrow-down {
+    transition: all 0.1s ease-in-out;
+}
+
+.arrow-up {
+    color: #00a82d;
+    transition: all 0.1s ease-in-out;
+    font-size: 12px;
+}
+
+.ll-last {
+    position: relative;
+    margin-right: 80px;
 }
 
 
@@ -37,31 +99,24 @@
 }
 
 .right-nav {
+    display: flex;
+    justify-content: flex-end;
     height: 100%;
     width: 40%;
     border: 1px solid green;
 }
 
-#landing-links-left {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    border: 1px solid white;
+
+.login-box {
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ align-items: center;
+ width: 150px;
+ height: 100%;
+ border: 1px solid black;
 }
 
-.landing-link-left {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
-    height: 100%;
-    border: 1px solid green;
-}
-
-.ll-last {
-    margin-right: 80px;
-}
 
 
 @media only screen and (max-width: 1000px) {
@@ -73,13 +128,13 @@
 }
 
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1800px) {
 
 
     #landing-links-left {
         display: flex;
         justify-content: stretch;
-        width: 100%;
+        width: 15%;
         height: 100%;
         border: 1px solid white;
     }
@@ -89,8 +144,50 @@
     }
 
     .ll-last {
-        margin-right: 0;
+        margin-left: 40px;
     }
 
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+
+    #landing-links-left {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        height: 100%;
+        border: 1px solid white;
+    }
+
+    .ll-first {
+        display: none;
+    }
+
+    .landing-link-left {
+        width: 100%;
+    }
+
+    .ll-last {
+        display: none;
+    }
+
+    .landing-logo-text {
+        display: none;
+    }
+
+}
+
+
+@media only screen and (max-width: 835px) {
+    .ll-first {
+        display: none;
+    }
+
+    .ll-last {
+        display: none;
+    }
 
 }
