@@ -9,7 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import LandingPage from './components/LandingPage/LandingPage';
-
+import Main from './components/Main/Main'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,11 +30,14 @@ function App() {
     <BrowserRouter>
       <Switch>
 
-        {/* <Route path='/login' exact={true}>
+        <Route path='/login' exact={true}>
           <LoginForm />
-        </Route> */}
+        </Route>
 
 
+        <ProtectedRoute path='/home' exact={true}>
+          <Main/>
+        </ProtectedRoute>
         {/* <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route> */}

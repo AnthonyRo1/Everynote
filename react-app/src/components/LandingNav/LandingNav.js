@@ -1,28 +1,42 @@
 import './landingnav.css'
 import {useState} from 'react';
 import logos from '../../images/everynote_logo.png'
+import {NavLink} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
 
 const LandingNav = () => {
-
+    const history = useHistory();
     const [rightLinkHovered, setRightLinkHovered] = useState(false);
     const [leftLinkHovered, setLeftLinkHovered] = useState(false)
+    const [mouseOver, setMouseOver] = useState(false);
+    const [dropDownHovered, setDropDownHovered] = useState(false);
+
+
 
     const rightLinkHover = () => {
+        setMouseOver(true);
         setRightLinkHovered(true);
     }
 
     const leftLinkHover = () => {
+        setMouseOver(true)
         setLeftLinkHovered(true)
     }
 
     const rightLinkExit = () => {
+        setMouseOver(true)
         setRightLinkHovered(false);
     }
 
     const leftLinkExit = () => {
+        setMouseOver(true)
         setLeftLinkHovered(false)
     }
 
+    const anyLinkHovered = leftLinkHovered || rightLinkHovered;
+
+    console.log(anyLinkHovered)
 
     return (
         <div className='nav-popup-container'>
@@ -43,7 +57,7 @@ const LandingNav = () => {
                                     className={leftLinkHovered ? 'landing-link each-link-hovered' : 'landing-link'}>GITHUB</a>
                                 {!leftLinkHovered ?
                                     <i className="fas fa-caret-down arrow-down" ></i> :
-                                    <i class="fas fa-caret-up arrow-up"></i>
+                                    <i className="fas fa-caret-up arrow-up"></i>
                                 }
                         </div>
                         <div className={rightLinkHovered ? 'landing-link-left link-hovered ll-last' : 'landing-link-left ll-last'}>
@@ -53,7 +67,7 @@ const LandingNav = () => {
 
                             { !rightLinkHovered ?
                             <i className="fas fa-caret-down arrow-down" ></i> :
-                             <i class="fas fa-caret-up arrow-up"></i>
+                             <i className="fas fa-caret-up arrow-up"></i>
                             }
                         </div>
                         <div className='landing-link-left ll-last'>
@@ -62,11 +76,21 @@ const LandingNav = () => {
                 </div>
                 <div className='right-nav'>
                     <div className='login-box'>
-                        <button id='login-nav-btn'></button>
+                        <button id='login-nav-btn' onClick={() => history.push('/login')}>Login</button>
                     </div>
                 </div>
-                </div>
-        </div>
+            </div>
+        </div>{ mouseOver &&
+        <div className='landing-nav-dropdown' onMouseEnter={() => setMouseOver(true)} 
+        onMouseLeave={() => setMouseOver(false)}>
+            
+        </div>}
+            {mouseOver &&
+        <div className='landing-nav-dropdown' onMouseEnter={() => setMouseOver(true)}
+                    onMouseLeave={() => setMouseOver(false)}>
+
+        </div>}
+
         </div>
     )
 }
