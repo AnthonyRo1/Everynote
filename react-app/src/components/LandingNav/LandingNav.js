@@ -36,8 +36,6 @@ const LandingNav = () => {
 
     const anyLinkHovered = leftLinkHovered || rightLinkHovered;
 
-    console.log(anyLinkHovered)
-
     return (
         <div className='nav-popup-container'>
         <div className='landing-nav-container'>

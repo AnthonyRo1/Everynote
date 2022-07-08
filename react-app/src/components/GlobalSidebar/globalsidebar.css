@@ -1,0 +1,276 @@
+.global-sidebar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 239px;
+    background-color: black;
+    padding-top: 10px;
+}
+
+
+.sidebar-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+    height: 36px;
+    width: 100%;
+}
+
+.sidebar-userinfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    flex-wrap: wrap-reverse;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#sb-icon-box {
+    display: flex;
+    justify-content: center;
+    width: 50px;
+}
+
+#sb-user-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: blue;
+}
+
+#sb-email {
+    font-size: 13px;
+    width: 90px;
+    white-space: no-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ccc;
+    letter-spacing: .5px;
+}
+
+#sb-email:hover {
+    color: white;
+}
+
+
+.sidebar-settings {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 18%;
+    height: 100%;
+}
+
+
+
+
+#angle-down-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 100%;
+}
+
+
+
+.sbt-angle-down {
+    position: relative;
+    left: 12px;
+    font-size: 9px;
+    color: #a6a6a6;
+    text-align: center;
+}
+
+.sb-gear {
+    position: relative;
+    right: 5px;
+    font-size: 18px;
+    -webkit-text-stroke: 0.5px #ccc;
+    cursor: pointer;
+}
+
+
+.user-newnote-divider {
+    height: 15px;
+}
+
+
+
+.sidebar-new-note {
+    display: flex;
+    width: 100%;
+    height: 36px;
+    padding-inline: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#sb-new-note-btn {
+    display: flex;
+    justify-content: space-between;
+    height: 36px;
+    width: 100%;
+    background-color: #00a82d;
+    border-radius: 20px;
+    padding-inline: 12px;
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+
+#sb-new-note-btn:hover {
+    background-color: #009127;
+}
+
+
+#new-note-plus-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 45px;
+    height: 100%;
+}
+
+
+#sb-new-txt {
+    font-size: 13px;
+}
+
+#sbnn-angle-down-box {
+    display: flex;
+    align-items: center;
+    width: 25px;
+    height: 100%;
+}
+
+.sbnn-ad {
+    position: relative;
+    left: 10px;
+    font-size: 14px;
+}
+
+
+#sb-home-btn-box {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 55px;
+}
+
+#sb-home-background {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    background-color: #333;
+    padding-inline-start: 28px;
+    width: 100%;
+}
+
+#sb-home-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+}
+
+
+.sb-home-icon {
+    color: white;
+}
+
+
+#sb-home-txt {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.sidebar-list {
+    width: 100%;
+    height: 100%;
+}
+
+.sb-ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.sb-li {
+    width: 100%;
+    height: 32px;
+    display: block;
+}
+
+.sb-li:hover {
+    background-color: grey;
+}
+
+.sb-links {
+    width: 100%;
+    color: #a6a6a6;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+}
+
+
+.sb-links:hover {
+    color: white;
+}
+
+
+
+.sb-links-txt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    left: 32px;
+    width: 62px;
+    height: 100%;
+}
+
+.sb-li-icon {
+    margin-left: 30px;
+}
+
+.sb-li-txt {
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 12px;
+}
+
+
+
+@media only screen and (max-width: 231px) {
+
+    #sb-user-icon {
+    position: relative;
+    left: 10px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: blue;
+    }
+
+    #sb-email {
+        display: none;
+    }
+
+    .sbt-angle-down {
+        display: none;
+    }
+
+
+}

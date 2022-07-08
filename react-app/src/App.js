@@ -10,14 +10,17 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import LandingPage from './components/LandingPage/LandingPage';
 import Main from './components/Main/Main'
+import {getAllNotes} from './store/notes';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(getAllNotes());
       setLoaded(true);
     })();
   }, [dispatch]);
