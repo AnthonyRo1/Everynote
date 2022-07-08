@@ -11,7 +11,7 @@ import { authenticate } from './store/session';
 import LandingPage from './components/LandingPage/LandingPage';
 import Main from './components/Main/Main'
 import {getAllNotes} from './store/notes';
-
+import RightSideBar from './components/RightSideBar/RightSideBar';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,12 +38,13 @@ function App() {
         </Route>
 
 
-        <ProtectedRoute path='/home' exact={true}>
+        <ProtectedRoute path={['/home', '/notes']} exact={true}>
           <Main/>
         </ProtectedRoute>
-        {/* <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route> */}
+
+        {/* <ProtectedRoute path='/notes' exact={true}>
+          <RightSideBar/>
+        </ProtectedRoute> */}
 
 
         {/* <ProtectedRoute path='/users' exact={true} >
