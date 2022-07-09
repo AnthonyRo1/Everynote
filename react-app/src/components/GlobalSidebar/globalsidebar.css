@@ -3,16 +3,17 @@
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    width: 239px;
+    width: 242px;
+    min-width: 142px;
     background-color: black;
     padding-top: 10px;
+    flex-shrink: 0;
 }
 
 
 .sidebar-top {
     display: flex;
     flex-direction: row;
-    justify-content: stretch;
     align-items: center;
     height: 36px;
     width: 100%;
@@ -22,8 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80%;
-    flex-wrap: wrap-reverse;
+    width: 100%;
     height: 100%;
     overflow: hidden;
     cursor: pointer;
@@ -31,8 +31,9 @@
 
 #sb-icon-box {
     display: flex;
-    justify-content: center;
-    width: 50px;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
 }
 
 #sb-user-icon {
@@ -50,6 +51,8 @@
     text-overflow: ellipsis;
     color: #ccc;
     letter-spacing: .5px;
+    position: relative;
+    right: 8px;
 }
 
 #sb-email:hover {
@@ -79,11 +82,16 @@
 
 
 .sbt-angle-down {
-    position: relative;
-    left: 12px;
     font-size: 9px;
     color: #a6a6a6;
     text-align: center;
+}
+
+#sb-gear-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
 }
 
 .sb-gear {
@@ -168,9 +176,12 @@
     display: flex;
     align-items: center;
     height: 32px;
-    background-color: #333;
     padding-inline-start: 28px;
     width: 100%;
+}
+
+#sb-home-background:hover {
+    background-color: #333;
 }
 
 #sb-home-link {
@@ -179,7 +190,13 @@
     align-items: center;
     text-decoration: none;
     color: white;
+    display: inline-block;
     width: 100%;
+}
+
+
+#sb-home-link.active > #sb-home-background {
+    background-color: #333;
 }
 
 
@@ -211,7 +228,12 @@
 }
 
 .sb-li:hover {
-    background-color: grey;
+    background-color: #333;
+}
+
+.sb-li > a.active {
+    color: white;
+    background-color: #333;
 }
 
 .sb-links {
@@ -251,18 +273,55 @@
     margin-left: 12px;
 }
 
+@media only screen and (max-width: 640px) {
+
+    .global-sidebar-container {
+        width: 35%;
+    }
+
+    .sidebar-top {
+        justify-content: center;
+    }
+
+    .sidebar-userinfo {
+        width: 32px;
+    }
+
+    #sb-icon-box {
+        display: fixed;
+    }
+
+    #sb-email {
+        display: none;
+    }
+
+    #sb-icon-box {
+        width: 32px;
+        justify-content: center;
+    }
+
+    .sbt-angle-down {
+        display: none;
+    }
+
+    #sb-gear-box {
+        position: relative;
+        left: 10px;
+    }
+}
+
 
 
 @media only screen and (max-width: 231px) {
 
-    #sb-user-icon {
+    /* #sb-user-icon {
     position: relative;
     left: 10px;
     width: 35px;
     height: 35px;
     border-radius: 50%;
     background-color: blue;
-    }
+    } */
 
     #sb-email {
         display: none;

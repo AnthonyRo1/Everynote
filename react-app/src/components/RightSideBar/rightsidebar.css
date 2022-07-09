@@ -1,5 +1,144 @@
+
+
 .right-sidebar-container {
-    height: 100vh;
-    width: 400px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 381px;
+    background-color: #1a1a1a;
+    animation: slide-in;
+    animation-duration: 0.7s;
+    color: #d9d9d9;
+}
+
+
+
+
+.rs-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 96px;
+
+}
+
+.rs-h-innerheader {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+}
+
+.rs-h-ih-title {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding-inline-start: 15px;
+    position: relative;
+    font-size: 20px;
+
+}
+
+.rs-h-ih-icon {
+    margin-right: 8px;
+}
+
+.rs-h-innerfooter { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    width: 100%;
+    padding-inline-start: 25px;
+    padding-inline-end: 15px;
+}
+
+.rs-h-if-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 26px;
+}
+
+.rs-h-if-icons-left {
+    display: flex;
+    align-items: center;
+    width: 100px;
+    height: 100%;
+}
+
+
+#rs-h-if-txt {
+    font-size: 14px;
+    color: #a6a6a6;
+}
+
+
+.rs-h-if-icons-right {
+    width: 80px;
+    height: 100%;
+}
+
+/* MAIN AREA HEADER DIVIDER */
+.rs-divider {
+    display: flex;
+    align-items: center;
+    height: 15px;
+    width: 100%;
+}
+
+#rs-d-line {
+    align-self: flex-end;
+    height: 1px;
+    width: 100%;
+    background-color: #97979718;
+}
+/* MAIN AREA HEADER DIVIDER */
+
+
+.rs-allnotes-container {
+    height: 100%;
+    width: 100%;
+    padding-inline-end: 15px;
+}
+
+
+@keyframes slide-in {
+    
+ from {
+    transform: translateX(-100%)
+ }
+
+ to {
+    
+ }
+
+}
+
+
+@media only screen and (max-width: 231px) {
+
+    /* #sb-user-icon {
+    position: relative;
+    left: 10px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
     background-color: blue;
+    } */
+
+    #sb-email {
+        display: none;
+    }
+
+    .sbt-angle-down {
+        display: none;
+    }
+
+
 }

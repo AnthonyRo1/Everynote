@@ -1,0 +1,86 @@
+a {
+    text-decoration: none;
+    color: #a6a6a6;
+}
+
+a:first-child.active > .note-preview-container {
+    border: 2px solid rgb(20, 147, 197);
+    background-color: rgb(36, 36, 36);
+}
+
+a.active > .note-preview-container {
+    border: 2px solid #a6a6a6;
+    background-color: rgb(36, 36, 36);
+}
+
+.note-preview-container {
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    width: 100%;
+    border-left: 2px solid transparent;
+    border-top: 2px solid transparent;
+    border-right: solid transparent;
+    border-bottom: .2px solid #97979718;
+    padding-inline-start: 25px;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.note-preview-container.active {
+    background-color: blue;
+}
+
+.note-preview-container:hover {
+    background-color: rgb(36, 36, 36);
+}
+
+.np-c-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    width: 60%;
+    height: 30%;
+}
+
+#np-ct-txt {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
+
+
+.np-c-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 80%;
+    height: 40%;
+    overflow: hidden;
+}
+
+#np-ci-maintxt {
+    position: relative;
+    top: 0;
+    color: #a6a6a6;
+    margin: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.np-c-footer {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 20%;
+}
+
+#np-cf-txt {
+    font-size: 11px;
+    color: #a6a6a6;
+}
