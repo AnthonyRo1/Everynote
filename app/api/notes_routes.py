@@ -24,7 +24,7 @@ def get_notebook_notes(notebookId):
 
 
 # CREATE STANDALONE NOTE
-@note_routes.route('/', methods=['POST'])
+@note_routes.route('', methods=['POST'])
 @login_required
 def create_note():
     form = NoteForm()
@@ -42,7 +42,7 @@ def create_note():
         db.session.commit()
         return note.to_dict()
     else:
-        return {'errors': form.errors()}
+        return
 
 
 

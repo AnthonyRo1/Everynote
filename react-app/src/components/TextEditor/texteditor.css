@@ -104,3 +104,9 @@
     width: 100%;
     background-color: #97979718;
 }
+
+#note-opt-dual {
+    display: flex;
+    flex-direction: column;
+}
+

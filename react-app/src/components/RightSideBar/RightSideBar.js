@@ -3,22 +3,25 @@ import {useSelector} from 'react-redux';
 import NotePreview from '../NotePreview/NotePreview';
 import { NavLink } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
+import { useState } from 'react';
 const RightSideBar = () => {
 
     const user = useSelector((state) => state.session.user)
     const allNotes = useSelector((state) => state.notesAll);
     const notesArr = Object.values(allNotes);
 
-    const userNotes = notesArr.filter(notes => notes?.user_id == user?.id)
+    const userNotes = notesArr.filter(notes => notes?.user_id == user?.id).reverse();
 
+    
 
+    
     return (
         <div className='right-sidebar-container'>
             <div className='rs-header'>
                 <div className='rs-h-innerheader'>
                     <div className='rs-h-ih-title'>
                         <i className="far fa-sticky-note rs-h-ih-icon"></i>
-                        <p id='rs-h-ih-txt'>Notes</p>
+                        <p id='rs-h-ih-txt' >Notes</p>
                     </div>
                 </div>
                 <div className='rs-h-innerfooter'>

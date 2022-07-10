@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 const MainTextArea = ({note}) => {
     const {noteId} = useParams();
 
-
+    console.log(noteId, 'MAIN NOTE MAIN NOTE MAIN NOTE');
     const allNotes = useSelector((state) => state.notesAll);
 
 
@@ -31,24 +31,41 @@ const MainTextArea = ({note}) => {
 
 
     return (
-            <div className='main-text-area-container'>
+        <div className='main-text-area-container'>
             <form className='text-area-main-form'>
-            <div className='text-area-divider te-d-top'>
-            </div>
-            <textarea id='text-editor-title'
-            value={noteTitle}
-            onChange={(e) => setNoteTitle(e.target.value)}
-            >
-            </textarea>
-            <div className='text-area-divider te-d-bottom'>
-            </div>
-            <textarea className='text-editor-type'
-            value={noteContent}
-            onChange={(e) => setNoteContent(e.target.value)}
-            >
-            </textarea>
+
+                {/* TITLE + NOTE - DIVIDER TOP */}
+                <div className='text-area-divider te-d-top'>
+                </div>
+
+
+                {/* NOTE TITLE */}
+                <div className='top-txt-container'>
+                <textarea id='text-editor-title'
+                value={noteTitle}
+                onChange={(e) => setNoteTitle(e.target.value)}
+                >
+                </textarea>
+                </div>
+
+
+                {/* TITLE + NOTE - DIVIDER BOTTOM */}
+                <div className='text-area-divider te-d-bottom'>
+                </div>
+
+
+                {/* NOTE */}
+                <div className='bottom-txt-container'>
+                <textarea className='text-editor-type'
+                value={noteContent}
+                onChange={(e) => setNoteContent(e.target.value)}
+                >
+                </textarea>
+                </div>
+
+
             </form>
-            </div>
+        </div>
     )
 }
 

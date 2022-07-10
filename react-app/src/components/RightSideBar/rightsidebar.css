@@ -103,8 +103,32 @@
 
 .rs-allnotes-container {
     height: 100%;
-    width: 100%;
-    padding-inline-end: 15px;
+    width: 100%;;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+
+::-webkit-scrollbar {
+    width: 8.5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #535353;
+    border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+
 }
 
 

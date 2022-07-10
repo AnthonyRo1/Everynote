@@ -42,8 +42,8 @@ export const getAllNotes = () => async dispatch => {
 }
 
 
-export const createSingleNote = (id, data) => async dispatch => {
-    const res = await fetch(`/api/notes/${id}`, {
+export const createSingleNote = (data) => async dispatch => {
+    const res = await fetch(`/api/notes`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -54,6 +54,7 @@ export const createSingleNote = (id, data) => async dispatch => {
     if (res.ok) {
         const note = await res.json()
         dispatch(createNote(note))
+        return note;
     }
 }
 

@@ -1,14 +1,37 @@
 import './globalsidebar.css'
-import {NavLink} from 'react-router-dom';
+import {NavLink, useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useRef } from 'react';
+import { createElement } from 'react';
+import {createSingleNote} from '../../store/notes';
+import { useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 const GlobalSidebar = () => {
+    const {noteId} = useParams();
+
+    const notesLinkRef = useRef(null);
+    const newNoteRef = useRef(null);
+
+    const dispatch = useDispatch();
+    // show **CREATE NEW** button ON HOVER within LIST 
+    const [showCreateNote, setShowCreateNote] = useState(false);
+    const [showCreateBtn, setShowCreateBtn] = useState(false);
+    const [showNewNote, setShowNewNote] = useState(false);
+
+
     const [userHasNotes, setUserHasNotes] = useState(0);
     const allNotes = useSelector((state) => state.notesAll);
     const user = useSelector((state) => state.session.user);
     const userNotes = Object.values(allNotes).filter(note => note?.user_id == user?.id);
 
     useEffect(() => {
+        window.document.addEventListener('mousedown', (e) => {
+            if (newNoteRef.current && !newNoteRef.current.contains(e.target)) {
+                setShowNewNote(false);
+            }
+        })
+
         setUserHasNotes(userNotes.length);
     }, [])
 
@@ -21,6 +44,23 @@ const GlobalSidebar = () => {
     const liTextDark = () => {
         setLiText(false);
     }
+
+
+    const createANote = (e) => {
+        e.preventDefault();
+        const title = 'Untitled';
+        const description = 'New note'
+        const content = '';
+        const data = {
+            title,
+            description,
+            content
+        }
+
+        dispatch(createSingleNote(data))
+        
+    }
+
 
     return (
         <div className='global-sidebar-container'>
@@ -39,7 +79,7 @@ const GlobalSidebar = () => {
             </div>
             <div className='user-newnote-divider'></div>
             <div className='sidebar-new-note'>
-                <div id='sb-new-note-btn'>
+                <div id='sb-new-note-btn' onClick={() => setShowNewNote(true)}>
                     <div id='new-note-plus-box'>
                         <i className="fa-solid fa-plus new-note-plus"></i>
                         <p id='sb-new-txt'>New</p>
@@ -48,9 +88,23 @@ const GlobalSidebar = () => {
                         <i className="fa-solid fa-angle-down sbnn-ad"></i>
                     </div>
                 </div>
+                { showNewNote &&
+                <div className='new-note-confirm' ref={newNoteRef}>
+                    <form className='new-note-form' onSubmit={createANote}>
+                        <button id='new-note-btn'>
+                            <i className="far fa-sticky-note sb-li-icon new-note-icon"></i>
+                            Note
+                        </button>
+                    </form>
+                </div>
+                }
+
+
             </div>
+
+
             <div id='sb-home-btn-box'>
-                <NavLink to='/home' id='sb-home-link'>
+                <NavLink to='/home' id='sb-home-link' >
                 <div id='sb-home-background'>
                 <i className="fa-solid fa-house sb-home-icon"></i>
                 <p id='sb-home-txt'>Home</p>
@@ -59,19 +113,27 @@ const GlobalSidebar = () => {
             </div>
             <div className='sidebar-list'>
                 <ul className='sb-ul'>
-                    <li className='sb-li'>
-                     <NavLink to={userHasNotes > 0 ? `/notes/${userNotes[0]?.id}` : '/notes'} className='sb-links'>
+
+
+
+
+                    <li className='sb-li' >
+                     <NavLink to={userHasNotes > 0 ? `/notes/${userNotes[userNotes.length - 1]?.id}` : '/notes'} className='sb-links'>
                             <i className="far fa-sticky-note sb-li-icon"></i>
                             <p className='sb-li-txt'>Notes</p>
                      </NavLink>
                     </li>
-                    <li className='sb-li' onMouseEnter={() => liTextWhite()}
-                    onMouseLeave={() => liTextDark()}>
-                        <NavLink to='/notebooks' className='sb-links'>
+
+
+                        <li className='sb-li' >
+                            <NavLink to='/notebooks' className='sb-links'>
                                 <i className="fa-solid fa-book sb-li-icon"></i>
                                 <p className='sb-li-txt'>Notebooks</p>
-                        </NavLink>
-                    </li>
+                            </NavLink>
+                        </li>
+
+
+
                 </ul>
             </div>
             <div className='sidebar-footer'></div>
