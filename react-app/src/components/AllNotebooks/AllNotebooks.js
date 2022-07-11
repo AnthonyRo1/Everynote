@@ -28,7 +28,7 @@ const AllNotebooks = () => {
                 <p id='an-subheader-title'>{userNotebooks.length} notebooks</p>
                 <div className='new-notebook-btn'>
                     <div className='nn-btn-txt-box'>
-                        <i class="fa-solid fa-square-plus new-notebook-icon"></i>
+                        <i className="fa-solid fa-square-plus new-notebook-icon"></i>
                         <p id='new-notebook-txt'>New Notebook</p>
                     </div>
                 </div>
@@ -48,7 +48,7 @@ const AllNotebooks = () => {
             {
                 userNotebooks.length > 0 && userNotebooks.map((notebook, i) => (
                     
-                    <NotebooksPreview tabindex={i} notebook={notebook}/>
+                    <NotebooksPreview key={i} tabindex={i} notebook={notebook}/>
                 ))
             }
                 </div>
