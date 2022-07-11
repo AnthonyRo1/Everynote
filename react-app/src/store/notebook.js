@@ -92,7 +92,7 @@ export default function notebooksAll(state = {}, action) {
             return newState
         case GET_NOTEBOOKS:
             newState = {}
-            notebooks = action.notebooks;
+            notebooks = action.notebooks.notebooks;
             notebooks.forEach(notebook => {
                 newState[notebook.id] = notebook;
             })

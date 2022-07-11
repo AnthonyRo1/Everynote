@@ -80,7 +80,7 @@ const TextEditor = () => {
                 <div className='te-innerheader'>
                     <div className='te-ih-title'>
                         <div id='te-ih-title-box'>
-                        <i className="far fa-sticky-note rs-h-ih-icon"></i>
+                            <i className="fa-solid fa-file-lines rs-h-ih-icon"></i>
 
                         {/* IF NOTE BELONGS TO NOTEBOOK DISPLAY LINK WITH NOTEBOOK NAME / ELSE DISPLAY NOTEBOOK NAME */}
                         <p id='rs-h-ih-txt'>Notes</p>

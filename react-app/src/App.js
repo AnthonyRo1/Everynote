@@ -36,12 +36,8 @@ function App() {
         </Route>
 
 
-        <ProtectedRoute path={['/home', '/notes', '/notes/:noteId']} exact={true}>
+        <ProtectedRoute path={['/home', '/notes', '/notes/:noteId', '/notebooks']} exact={true}>
           <Main/>
-        </ProtectedRoute>
-
-        <ProtectedRoute path='/notebooks'>
-          <AllNotebooks/>
         </ProtectedRoute>
 
 

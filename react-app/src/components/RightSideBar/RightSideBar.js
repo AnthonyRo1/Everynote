@@ -20,7 +20,7 @@ const RightSideBar = () => {
             <div className='rs-header'>
                 <div className='rs-h-innerheader'>
                     <div className='rs-h-ih-title'>
-                        <i className="far fa-sticky-note rs-h-ih-icon"></i>
+                        <i className="fa-solid fa-file-lines rs-h-ih-icon"></i>
                         <p id='rs-h-ih-txt' >Notes</p>
                     </div>
                 </div>

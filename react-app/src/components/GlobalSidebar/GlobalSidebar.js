@@ -92,7 +92,7 @@ const GlobalSidebar = () => {
                 <div className='new-note-confirm' ref={newNoteRef}>
                     <form className='new-note-form' onSubmit={createANote}>
                         <button id='new-note-btn'>
-                            <i className="far fa-sticky-note sb-li-icon new-note-icon"></i>
+                                <i className="fa-solid fa-file-lines new-note-icon"></i>
                             Note
                         </button>
                     </form>
@@ -119,7 +119,7 @@ const GlobalSidebar = () => {
 
                     <li className='sb-li' >
                      <NavLink to={userHasNotes > 0 ? `/notes/${userNotes[userNotes.length - 1]?.id}` : '/notes'} className='sb-links'>
-                            <i className="far fa-sticky-note sb-li-icon"></i>
+                            <i className="fa-solid fa-file-lines sb-li-icon"></i>
                             <p className='sb-li-txt'>Notes</p>
                      </NavLink>
                     </li>
