@@ -18,9 +18,12 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(getAllNotes());
+      // here 
       setLoaded(true);
+      
     })();
+    
+    dispatch(getAllNotes());
   }, [dispatch]);
 
   if (!loaded) {
