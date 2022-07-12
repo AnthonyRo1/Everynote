@@ -9,6 +9,7 @@ import { authenticate } from './store/session';
 import LandingPage from './components/LandingPage/LandingPage';
 import Main from './components/Main/Main'
 import {getAllNotes} from './store/notes';
+import { getAllNotebooks } from './store/notebook';
 import AllNotebooks from './components/AllNotebooks/AllNotebooks';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
     })();
     
     dispatch(getAllNotes());
+    dispatch(getAllNotebooks());
   }, [dispatch]);
 
   if (!loaded) {
@@ -39,23 +41,9 @@ function App() {
         </Route>
 
 
-        <ProtectedRoute path={['/home', '/notes', '/notes/:noteId', '/notebooks']} exact={true}>
+        <ProtectedRoute path={['/home', '/notes', '/notes/:noteId', '/notebooks', '/notes/notebooks/:notebookId', '/notes/notebooks/:notebookId/:noteId']} exact={true}>
           <Main/>
         </ProtectedRoute>
-
-
-        {/* <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute> */}
-
-
-
-        {/* <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute> */}
-
-
-
 
 
         <Route path='/' exact={true} >

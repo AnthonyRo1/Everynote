@@ -1,5 +1,3 @@
-
-
 .right-sidebar-container {
     display: flex;
     flex-direction: column;
@@ -9,7 +7,6 @@
     animation: slide-in;
     animation-duration: 0.7s;
     color: #d9d9d9;
-    flex-shrink: 0;
 }
 
 
@@ -46,7 +43,7 @@
     margin-right: 8px;
 }
 
-.rs-h-innerfooter { 
+.rs-h-innerfooter {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -99,12 +96,14 @@
     width: 100%;
     background-color: #97979718;
 }
+
 /* MAIN AREA HEADER DIVIDER */
 
 
 .rs-allnotes-container {
     height: 100%;
-    width: 100%;;
+    width: 100%;
+    ;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
@@ -134,14 +133,12 @@
 
 
 @keyframes slide-in {
-    
- from {
-    transform: translateX(-100%)
- }
 
- to {
-    
- }
+    from {
+        transform: translateX(-100%)
+    }
+
+    to {}
 
 }
 

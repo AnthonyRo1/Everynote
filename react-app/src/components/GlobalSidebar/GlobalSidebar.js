@@ -7,7 +7,9 @@ import { createElement } from 'react';
 import {createSingleNote} from '../../store/notes';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import LogoutButton from '../auth/LogoutButton';
 const GlobalSidebar = () => {
+
     const {noteId} = useParams();
 
     const notesLinkRef = useRef(null);
@@ -24,6 +26,8 @@ const GlobalSidebar = () => {
     const allNotes = useSelector((state) => state.notesAll);
     const user = useSelector((state) => state.session.user);
     const userNotes = Object.values(allNotes).filter(note => note?.user_id == user?.id);
+
+
 
     useEffect(() => {
         window.document.addEventListener('mousedown', (e) => {
@@ -118,7 +122,7 @@ const GlobalSidebar = () => {
 
 
                     <li className='sb-li' >
-                     <NavLink to={userHasNotes > 0 ? `/notes/${userNotes[userNotes.length - 1]?.id}` : '/notes'} className='sb-links'>
+                     <NavLink to={userNotes.length > 0 ? `/notes/${userNotes[userNotes.length - 1]?.id}` : '/notes'} className='sb-links'>
                             <i className="fa-solid fa-file-lines sb-li-icon"></i>
                             <p className='sb-li-txt'>Notes</p>
                      </NavLink>
@@ -137,6 +141,7 @@ const GlobalSidebar = () => {
                 </ul>
             </div>
             <div className='sidebar-footer'></div>
+            <LogoutButton/>
         </div>
     )
 }

@@ -48,12 +48,11 @@ def create_note():
 
 # CREATE NOTE BELONGING TO NOTEBOOK
 @note_routes.route('/<int:notebookId>', methods=['POST'])
-@login_required
 def create_notebook_note(notebookId):
     notebook = Notebook.query.get(notebookId)
     form = NoteForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit() and notebook:
+    if form.validate_on_submit():
         note = Note(
             title=form.data['title'],
             description=form.data['description'],
@@ -67,7 +66,7 @@ def create_notebook_note(notebookId):
         db.session.commit()
         return note.to_dict()
     else:
-        return {'errors': form.errors()}
+        return {'errors': form.errors}
 
 # UPDATE STANDALONE NOTE AND IT'S CONTENT
 @note_routes.route('/<int:noteId>', methods=['PUT'])

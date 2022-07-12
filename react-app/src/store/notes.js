@@ -105,6 +105,22 @@ export const moveSingleNote = (noteId, notebookId) => async dispatch => {
 }
 
 
+export const createNotebookNote = (notebookId, data) => async dispatch => {
+    const res = await fetch(`/api/notes/${notebookId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+
+    if (res.ok) {
+        const notebookNote = await res.json();
+        dispatch(createNote(notebookNote));
+        return notebookNote;
+    }
+}
+
 export default function notesAll(state = {}, action) {
     let newState;
     let note;

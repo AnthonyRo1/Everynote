@@ -7,6 +7,7 @@ def seed_notes():
         description='example note for testing',
         content='I need to create seeder data in order to test my backend routes and state',
         user_id=1,
+        notebook_id=1,
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -35,6 +36,7 @@ def seed_notes():
     description='example note for testing 4',
     content='I need to create seeder data in order to test my backend routes and state 4',
     user_id=2,
+    notebook_id=2,
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
     )

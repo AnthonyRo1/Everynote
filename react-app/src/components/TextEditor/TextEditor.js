@@ -6,7 +6,7 @@ import MainTextArea from '../MainTextArea/MainTextArea';
 import Main from '../Main/Main';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Route } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import { deleteSingleNote } from '../../store/notes';
 import { useDispatch } from 'react-redux';
@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 const TextEditor = () => {
 
     // CURRENT NOTE ID 
-    const {noteId} = useParams();
+    const {noteId, notebookId} = useParams();
 
 
 
@@ -29,7 +29,8 @@ const TextEditor = () => {
     // USESELECTOR FOR CURRENT NOTE INFO
     const allNotes = useSelector((state) => state.notesAll);
     const currentNote = Object.values(allNotes).find(note => note?.id == noteId);
-
+    const allNotebooks = useSelector((state) => state.notebooksAll);
+    const notebooksArr = Object.values(allNotebooks);
 
  // FIND THE NOTE ABOVE (ONE BEHIND) THE CURRENT NOTE;
     const noteAboveId = Object.values(allNotes).map((note, i) => {
@@ -56,7 +57,6 @@ const TextEditor = () => {
             }
 
             if (deleteRef.current && !deleteRef.current.contains(e.target)) {
-                console.log(true);
                 setToggleOptDelete(false);
             }
         })
@@ -74,6 +74,9 @@ const TextEditor = () => {
     }
 
 
+
+
+
     return (
         <div className='text-editor-container'>
             <div className='text-editor-header'>
@@ -83,7 +86,8 @@ const TextEditor = () => {
                             <i className="fa-solid fa-file-lines rs-h-ih-icon"></i>
 
                         {/* IF NOTE BELONGS TO NOTEBOOK DISPLAY LINK WITH NOTEBOOK NAME / ELSE DISPLAY NOTEBOOK NAME */}
-                        <p id='rs-h-ih-txt'>Notes</p>
+                        <p id='rs-h-ih-txt'>{notebookId ? notebooksArr.find(notebook => notebook?.id == notebookId)?.title : 'Note'}
+                        </p>
                         
                         <i className="fas fa-ellipsis-h menu-dots" onClick={() => setToggleOptions(true)}></i>
 
@@ -147,15 +151,11 @@ const TextEditor = () => {
                 </div>
                 </>
             }
-
-
-
             <div className='te-divider'>
                 <div id='te-line'></div>
             </div>
-            {/* <Route to='/notes/:noteId'> */}
+            
             <MainTextArea note={currentNote}/>
-            {/* </Route> */}
         </div>
     )
 }

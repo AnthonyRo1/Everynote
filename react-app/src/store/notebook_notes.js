@@ -6,7 +6,7 @@ const getNotebookNotes = (notes) =>({
 })
 
 
-export const getNotesFromNotebook = (noteId, notebookId) => async dispatch => {
+export const getNotesFromNotebook = (notebookId) => async dispatch => {
     const res = await fetch(`/api/notes/${notebookId}`)
 
     if (res.ok) {

@@ -1,9 +1,12 @@
 import './notepreview.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useState } from 'react';
-const NotePreview = ({title, content, updated, id}) => {
+
+const NotePreview = ({title, content, updated, id, notebookId}) => {
+    
+
     return (
-        <NavLink to={`/notes/${id}`}>
+        <NavLink to={!notebookId ? `/notes/${id}` : `/notes/notebooks/${notebookId}/${id}`}>
         <div className={'note-preview-container'} >
             <div className='np-c-title'>
                 <p id='np-ct-txt'>{title}</p>

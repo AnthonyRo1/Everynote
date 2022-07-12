@@ -36,8 +36,8 @@ export const getAllNotebooks = () => async dispatch => {
 };
 
 
-export const createSingleNotebook = (id, data) => async dispatch => {
-    const res = await fetch(`/api/notebooks/${id}`, {
+export const createSingleNotebook = (data) => async dispatch => {
+    const res = await fetch(`/api/notebooks`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

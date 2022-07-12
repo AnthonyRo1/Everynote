@@ -13,10 +13,11 @@ def get_notebooks():
 
 
 
-@notebook_routes.route('/', methods=['POST'])
-@login_required 
+@notebook_routes.route('', methods=['POST'])
+@login_required
 def create_notebook():
     form = NotebookForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         notebook = Notebook(
             title=form.data['title'],
@@ -28,7 +29,7 @@ def create_notebook():
         db.session.commit()
         return notebook.to_dict()
     else:
-        return {'errors': form.errors()}
+        return {'errors': form.errors}
 
 
 
@@ -51,8 +52,6 @@ def update_notebook(id):
         notebook.updated_at = datetime.utcnow()
         db.session.commit()
         return notebook.to_dict()
-    else:
-        return {'errors': form.errors()}
 
 
 @notebook_routes.route('/<int:id>', methods=['DELETE'])

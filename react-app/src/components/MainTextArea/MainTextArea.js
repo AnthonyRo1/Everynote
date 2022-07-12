@@ -7,8 +7,6 @@ import { useSelector } from 'react-redux';
 
 const MainTextArea = ({note}) => {
     const {noteId} = useParams();
-
-    console.log(noteId, 'MAIN NOTE MAIN NOTE MAIN NOTE');
     const allNotes = useSelector((state) => state.notesAll);
 
 
@@ -25,8 +23,6 @@ const MainTextArea = ({note}) => {
         setNoteContent(currentNote?.content)
         setNoteTitle(currentNote?.title)
     }, [currentNote?.content])
-
-    console.log(noteContent, 'IS NOTE CONTENT CHANGE????')
 
 
 
