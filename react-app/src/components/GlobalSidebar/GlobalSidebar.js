@@ -142,6 +142,7 @@ const GlobalSidebar = () => {
             </div>
             <div className='sidebar-footer'></div>
             <LogoutButton/>
+            {/* comment for commit  */}
         </div>
     )
 }
