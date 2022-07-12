@@ -6,7 +6,16 @@ import TextEditor from '../TextEditor/TextEditor';
 import { Route } from 'react-router-dom';
 import AllNotebooks from '../AllNotebooks/AllNotebooks';
 import NotebookNotes from '../NotebookNotes/NotebookNotes';
+import { getAllNotebooks } from '../../store/notebook';
+import { getAllNotes } from '../../store/notes';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 const Main = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAllNotes())
+        dispatch(getAllNotebooks())
+    }, [])
     return (
         <div className='main-container'>
             <GlobalSidebar/>

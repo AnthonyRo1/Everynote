@@ -24,8 +24,8 @@ function App() {
       
     })();
     
-    dispatch(getAllNotes());
-    dispatch(getAllNotebooks());
+    // dispatch(getAllNotes());
+    // dispatch(getAllNotebooks());
   }, [dispatch]);
 
   if (!loaded) {
