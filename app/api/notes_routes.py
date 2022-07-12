@@ -7,7 +7,7 @@ note_routes = Blueprint('notes', __name__)
 
 
 # GET ALL NOTES 
-@note_routes.route('/')
+@note_routes.route('')
 def get_notes():
     notes = Note.query.all()
     return {'notes': [note.to_dict() for note in notes]}

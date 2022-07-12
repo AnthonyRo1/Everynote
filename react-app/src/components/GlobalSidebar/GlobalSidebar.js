@@ -4,14 +4,16 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRef } from 'react';
 import { createElement } from 'react';
-import {createSingleNote} from '../../store/notes';
+import {createSingleNote, createNotebookNote} from '../../store/notes';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 const GlobalSidebar = () => {
 
-    const {noteId} = useParams();
+    const {noteId, notebookId} = useParams();
 
+
+    console.log(notebookId);
     const notesLinkRef = useRef(null);
     const newNoteRef = useRef(null);
 
@@ -61,7 +63,11 @@ const GlobalSidebar = () => {
             content
         }
 
-        dispatch(createSingleNote(data))
+        if (notebookId) {
+         dispatch(createNotebookNote(notebookId, data));
+        } else {
+            dispatch(createSingleNote(data))
+        }
         
     }
 

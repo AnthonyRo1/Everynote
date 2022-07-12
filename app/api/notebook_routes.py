@@ -6,7 +6,7 @@ from datetime import datetime
 
 notebook_routes = Blueprint('notebooks', __name__)
 
-@notebook_routes.route('/')
+@notebook_routes.route('')
 def get_notebooks():
     notebooks = Notebook.query.all()
     return {'notebooks': [notebook.to_dict() for notebook in notebooks]}

@@ -21,7 +21,9 @@ const RightSideBar = () => {
     const notebooksArr = Object.values(allNotebooks);
     
     
-
+    useEffect(() => {
+        
+    }, [notesArr])
 
     
 
