@@ -1,33 +1,30 @@
 import './globalsidebar.css'
-import {NavLink, useParams} from 'react-router-dom';
+import {NavLink, useParams, useHistory} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRef } from 'react';
-import { createElement } from 'react';
 import {createSingleNote, createNotebookNote} from '../../store/notes';
 import { useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 const GlobalSidebar = () => {
 
-    const {noteId, notebookId} = useParams();
-
-
-    console.log(notebookId);
-    const notesLinkRef = useRef(null);
+    const {notebookId} = useParams();
+    const {noteId} = useParams();
     const newNoteRef = useRef(null);
 
+
+    const history = useHistory();
     const dispatch = useDispatch();
     // show **CREATE NEW** button ON HOVER within LIST 
-    const [showCreateNote, setShowCreateNote] = useState(false);
-    const [showCreateBtn, setShowCreateBtn] = useState(false);
+    // const [showCreateNote, setShowCreateNote] = useState(false);
+    // const [showCreateBtn, setShowCreateBtn] = useState(false);
     const [showNewNote, setShowNewNote] = useState(false);
 
 
-    const [userHasNotes, setUserHasNotes] = useState(0);
+    // const [userHasNotes, setUserHasNotes] = useState(0);
     const allNotes = useSelector((state) => state.notesAll);
     const user = useSelector((state) => state.session.user);
-    const userNotes = Object.values(allNotes).filter(note => note?.user_id == user?.id);
+    const userNotes = Object.values(allNotes).filter(note => note?.user_id === user?.id);
 
 
 
@@ -37,22 +34,11 @@ const GlobalSidebar = () => {
                 setShowNewNote(false);
             }
         })
-
-        setUserHasNotes(userNotes.length);
     }, [])
 
-    const [liText, setLiText] = useState(false);
-
-    const liTextWhite = () => {
-        setLiText(true);
-    }
-
-    const liTextDark = () => {
-        setLiText(false);
-    }
 
 
-    const createANote = (e) => {
+    const createANote = async(e) => {
         e.preventDefault();
         const title = 'Untitled';
         const description = 'New note'
@@ -65,9 +51,16 @@ const GlobalSidebar = () => {
 
         if (notebookId) {
          dispatch(createNotebookNote(notebookId, data));
-        } else {
+        } else if (!noteId) {
+           const note = await dispatch(createSingleNote(data))
+            history.push(`/notes/${note?.id}`)
+        }
+        else {
             dispatch(createSingleNote(data))
         }
+
+        setShowNewNote(false);
+        
         
     }
 
@@ -79,7 +72,7 @@ const GlobalSidebar = () => {
                     <div id='sb-icon-box'>
                         <div id='sb-user-icon'>
                         </div>
-                        <p id='sb-email'>new@new.com</p>
+                        <p id='sb-email'>{user?.email}</p>
                         <i className="fa-solid fa-angle-down sbt-angle-down"></i>
                     </div>
                 </div>

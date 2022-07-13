@@ -10,6 +10,7 @@ import { getAllNotebooks } from '../../store/notebook';
 import { getAllNotes } from '../../store/notes';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import HomePage from '../HomePage/HomePage';
 const Main = () => {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -28,6 +29,10 @@ const Main = () => {
 
             <Route path='/notebooks' exact={true}>
             <AllNotebooks/>
+            </Route>
+
+            <Route path='/home'>
+                <HomePage/>
             </Route>
 
 

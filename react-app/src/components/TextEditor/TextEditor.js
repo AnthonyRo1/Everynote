@@ -88,6 +88,8 @@ const TextEditor = () => {
                         {/* IF NOTE BELONGS TO NOTEBOOK DISPLAY LINK WITH NOTEBOOK NAME / ELSE DISPLAY NOTEBOOK NAME */}
                         <p id='rs-h-ih-txt'>{notebookId ? notebooksArr.find(notebook => notebook?.id == notebookId)?.title : 'Note'}
                         </p>
+
+                        
                         
                         <i className="fas fa-ellipsis-h menu-dots" onClick={() => setToggleOptions(true)}></i>
 
@@ -95,13 +97,8 @@ const TextEditor = () => {
                         </div>
                     </div>
                 </div>
-                <div className='te-innerfooter'>
-                    <div className='te-if-icons' style={{
-                        color: 'white'
-                    }}>
-                        FOOTER AREA WITH ICONS 
-                    </div>
-                </div>
+                {/* <div className='te-innerfooter'>
+                </div> */}
             </div>
 
 
@@ -151,9 +148,7 @@ const TextEditor = () => {
                 </div>
                 </>
             }
-            <div className='te-divider'>
-                <div id='te-line'></div>
-            </div>
+
             
             <MainTextArea note={currentNote}/>
         </div>

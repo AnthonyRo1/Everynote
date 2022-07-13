@@ -1,3 +1,11 @@
+.entire-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
 .main-text-area-container {
     display: flex;
     flex-direction: column;
@@ -9,6 +17,7 @@
     background-color: #262626;
     overflow: hidden;
     min-width: 500px;
+    padding-inline-start: 20px;
 }
 
 
@@ -42,7 +51,7 @@
 }
 
 .text-area-divider {
-    height: 5%;
+    height: 35px;
     width: 100%;
 }
 
@@ -67,4 +76,46 @@
     font-size: 16px;
     padding-bottom: 50px;
     padding-right: 50px;
+    line-height: 2;
+}
+
+
+.save-text-button {
+
+    height: 38px;
+    width: 100px;
+    background-color: #00a82d;
+    border: none;
+    border-radius: 5px;
+    color: #e6e6e6;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: flex-end;
+    position: relative;
+    right: 50px;
+}
+
+
+
+.te-divider {
+    display: flex;
+    align-items: center;
+    height: 15px;
+    width: 100%;
+}
+
+#te-line {
+    align-self: flex-end;
+    height: 1px;
+    width: 100%;
+    background-color: #97979718;
+}
+
+#err-txt-note {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 38px;
+    margin-left: 10px;
+    color: rgb(158, 69, 69);
 }

@@ -35,8 +35,8 @@ def create_note():
             description=form.data['description'],
             content=form.data['content'],
             user_id=current_user.id,
-            created_at=datetime.utcnow(),
-            updated_at=datetime.utcnow()
+            created_at=datetime.now(),
+            updated_at=datetime.now()
         )
         db.session.add(note)
         db.session.commit()
@@ -59,8 +59,8 @@ def create_notebook_note(notebookId):
             content=form.data['content'],
             notebook_id=notebookId,
             user_id=current_user.id,
-            created_at=datetime.utcnow(),
-            updated_at=datetime.utcnow()
+            created_at=datetime.now(),
+            updated_at=datetime.now()
         )
         db.session.add(note)
         db.session.commit()
@@ -79,7 +79,7 @@ def update_note(noteId):
         note.title = form.data['title']
         note.description = form.data['description']
         note.content = form.data['content']
-        note.updated_at = datetime.utcnow()
+        note.updated_at = datetime.now()
         db.session.commit()
         return note.to_dict()
     else:
@@ -95,7 +95,7 @@ def update_notebook_note(noteId, notebookId):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit() and note and notebook:
         note.notebook_id = notebookId
-        note.updated_at = datetime.utcnow()
+        note.updated_at = datetime.now()
         db.session.commit()
         return note.to_dict()
     else:

@@ -17,7 +17,7 @@ const AllNotebooks = () => {
 
     useEffect(() => {
         dispatch(getAllNotebooks())
-    }, [])  
+    }, [dispatch])  
 
 
 
@@ -47,7 +47,7 @@ const AllNotebooks = () => {
     // LOAD ALL NOTEBOOKS STATE 
     const user = useSelector((state) => state.session.user);
     const allNotebooks = useSelector((state) => state.notebooksAll);
-    const userNotebooks = Object.values(allNotebooks).filter(notebook => notebook?.user_id == user?.id);
+    const userNotebooks = Object.values(allNotebooks).filter(notebook => notebook?.user_id === user?.id);
 
 
     const showNotebookForm = () => {

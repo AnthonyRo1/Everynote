@@ -4,6 +4,7 @@ from app.models import Notebook, db
 from app.forms.notebook_form import NotebookForm
 from datetime import datetime
 
+
 notebook_routes = Blueprint('notebooks', __name__)
 
 @notebook_routes.route('')
@@ -22,8 +23,8 @@ def create_notebook():
         notebook = Notebook(
             title=form.data['title'],
             user_id=current_user.id,
-            created_at=datetime.utcnow(),
-            updated_at=datetime.utcnow()
+            created_at=datetime.now(),
+            updated_at=datetime.now()
         )
         db.session.add(notebook)
         db.session.commit()
@@ -49,7 +50,7 @@ def update_notebook(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit() and notebook:
         notebook.title = form.data['title']
-        notebook.updated_at = datetime.utcnow()
+        notebook.updated_at = datetime.now()
         db.session.commit()
         return notebook.to_dict()
 

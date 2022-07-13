@@ -1,7 +1,6 @@
 import './landingnav.css'
 import {useState} from 'react';
 import logos from '../../images/everynote_logo.png'
-import {NavLink} from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 
