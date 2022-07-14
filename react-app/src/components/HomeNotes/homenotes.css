@@ -55,10 +55,16 @@
 #p-content {
     width: 160px;
     overflow: hidden;
-    white-space: wrap;
     text-overflow: ellipsis;
-    text-align: left;
     font-size: 16px;
     color: #aaaaaa;
 }
 
+
+
+.home-notes-divider {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(128, 128, 128, 0.13);
+    margin-top: 12px;
+}

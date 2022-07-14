@@ -2,6 +2,24 @@
     width: 100%;
 }
 
+
+.notebooks-preview-container.flash {
+    animation: color-in;
+    animation-duration: 0.5s
+}
+
+
+@keyframes color-in {
+    from {
+        opacity: 0%;
+        
+    }
+
+    to {
+        background-color: rgb(0, 94, 202);
+    }
+}
+
 .nb-table-header {
     display: flex;
     font-size: 11px;
@@ -229,8 +247,10 @@
     color: #d9d9d9;
 }
 
-.nn-row-elips {
-    font-size: 10px;
+.nn-row-ellips {
+    font-size: 15px;
+    margin-right: 14px;
+    cursor: pointer;
 }
 
 
@@ -443,7 +463,7 @@
     height:  30px;
     width: 100%;
     font-size: 14px;
-    color: rgb(180, 77, 77);
+    color: rgb(189, 56, 56);
 }
 
 #rn-nbf-err-txt {
@@ -480,7 +500,14 @@
     border-radius: 4px;
     border: none;
     color: #e6e6e6;
+    background-color: rgb(0, 156, 0);
+    transition: all 0.25s ease-in-out;
+}
+
+
+.nb-rn-btn-submit.darken-disable {
     background-color: grey;
+    transition: all 0.25s ease-in-out;
 }
 /* RENAME NOTEBOOK FORM */
 
@@ -566,4 +593,213 @@
 
 #delete-nbf-submit:hover{ 
     border: 1px solid rgb(180, 77, 77);
+}
+
+.move-to-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 40%;
+    top: 20%;
+    width: 500px;
+    height: 500px;
+    background-color: #262626;
+    border-radius: 5px;
+    border: 1px solid #363636;
+    box-shadow: 0px 10px 50px black;
+    animation: fade-in;
+    animation-duration: 0.25s;
+}
+
+.mtc-title-bar {
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid #363636;
+}
+
+#mtc-title {
+    margin-left: 20px;
+    font-size: 18px;
+    color: #e9e9e9;
+}
+
+.mtc-inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    color: #d9d9d9;
+}
+
+
+.move-to-row {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.move-to-row:focus {
+    background-color: #3636368f;
+    border: 1px solid rgb(0, 102, 255);
+}
+
+.move-to-row:hover {
+    background-color: #3636368f;
+}
+
+
+.move-to-row.current-nb {
+    /* background-color: #5c5c5cc0; */
+    color: #8d8d8d;
+}
+
+
+.confirm-row-mtc {
+    align-self: flex-end;
+    margin-top: auto;
+    width: 100%;
+    border-top: 1px solid #363636;
+}
+
+.confirm-row-mtc-err {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: 100%;
+    padding-inline-start: 20px;
+}
+
+
+#mtc-err-txt {
+    padding: 0;
+    margin: 0;
+    color: rgb(194, 194, 194);
+}
+
+
+.confirm-row-mtc-btns {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 56px;
+}
+
+.confirm-row-mtc-btns button {
+    height: 36px;
+    width: 80px;
+    margin-right: 25px;
+}
+
+
+#mtc-cancel-btn {
+    background-color: transparent;
+    color: #d9d9d9;
+    border: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#mtc-cancel-btn:hover {
+    background-color: rgba(128, 128, 128, 0.295);
+}
+
+
+#mtc-submit-btn {
+    background-color: rgb(0, 163, 0);;
+    color: black;
+    border: none;
+    border-radius: 4px;;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+
+#mtc-submit-btn:hover {
+    background-color: rgb(0, 141, 0);
+}
+
+
+.nn-delete-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 30%;
+    left: 43%;
+    width: 400px;
+    height: 200px;
+    background-color: #262626;
+    border: 1px solid #363636;
+    border-radius: 8px;
+}
+
+.nn-delete-title {
+    height: 40px;
+    width: 100%;
+    border-bottom: 1px solid #363636;
+}
+
+#nn-delete-txt {
+    font-size: 18px;
+    color: #e9e9e9;
+    margin-left: 20px;
+}
+
+.nn-delete-inner {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#nn-delete-inner-txt {
+    font-size: 20px;
+    color: #d9d9d9;
+}
+
+.nn-delete-btns {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.nn-delete-btns button {
+    width: 80px;
+    height: 35px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#nn-delete-cancel {
+    border: 1px solid #d9d9d9;
+    color: #d9d9d9;
+    background-color: transparent;
+    font-size: 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+#nn-delete-cancel:hover {
+    background-color: rgba(128, 128, 128, 0.164);
+
+}
+
+
+#nn-delete-submit {
+    border: 1px solid #d9d9d9;
+    color: #a13030;
+    background-color: transparent;
+    font-size: 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+#nn-delete-submit:hover {
+    border: 1px solid #a13030;
 }

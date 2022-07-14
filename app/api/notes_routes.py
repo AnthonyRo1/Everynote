@@ -91,15 +91,11 @@ def update_note(noteId):
 def update_notebook_note(noteId, notebookId):
     note = Note.query.get(noteId)
     notebook = Notebook.query.get(notebookId)
-    form = NoteForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit() and note and notebook:
+    if note and notebook:
         note.notebook_id = notebookId
         note.updated_at = datetime.now()
         db.session.commit()
         return note.to_dict()
-    else:
-        return {'errors': form.errors()}
 
 @note_routes.route('/<int:noteId>', methods=['DELETE'])
 @login_required

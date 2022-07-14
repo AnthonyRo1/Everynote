@@ -2,21 +2,22 @@ import { useState, useRef, useEffect } from 'react';
 import './notebookspreview.css';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateSingleNotebook, deleteSingleNotebook} from '../../store/notebook';
-import { createNotebookNote } from '../../store/notes';
+import { updateSingleNotebook, deleteSingleNotebook, createSingleNotebook} from '../../store/notebook';
+import { createNotebookNote, moveSingleNote, deleteSingleNote} from '../../store/notes';
+
 const NotebooksPreview = ({notebook, tabindex}) => {
 
 
     const dispatch = useDispatch();
     const history = useHistory();
 
-
+// REFS ALLOWING FOR DETECTION OF CLICK OUTSIDE OF ELEMENT
     const noteOptionsRef = useRef(null);
     const notebookOptionsRef = useRef(null);
     const deleteRef = useRef(null);
 
 
-
+// USESTATE FOR SPECIFIC PAGE ACTIONS
     const [notebookActions, setNotebookActions] = useState(false);
     const [arrowTurned, setArrowTurned] = useState(false);
     const [notebookNoteForm, setNotebookNoteForm] = useState(false);
@@ -25,9 +26,14 @@ const NotebooksPreview = ({notebook, tabindex}) => {
     const [title, setTitle] = useState(notebook?.title);
     const [renameErrors, setRenameErrors] = useState([]);
     const [deleteNotebook, setDeleteNotebook] = useState(false);
+    const [moveTo, setMoveTo] = useState(false); 
+    const [moveNotebookInfo, setMoveNotebookInfo] = useState(-1)
+    const [coloredRow, setColoredRow] = useState(false);
+    const [moveErrors, setMoveErrors] = useState([]);
+    const [deleteNote, setDeleteNote] = useState(false);
 
 
-
+// FUNCTION THAT TURNS AN ARROW 90 DEGREES OnClick
     const turnArrow = () => { 
         if (arrowTurned) {
            return setArrowTurned(false);
@@ -37,36 +43,48 @@ const NotebooksPreview = ({notebook, tabindex}) => {
     }
 
 
+// USE SELECTORS GETTING CURRENT STATE 
 
 
+    // USER STATE 
     const user = useSelector((state) => state.session.user);
+    // NOTES STATE 
     const allNotes = useSelector((state) => state.notesAll);
-
     const notebookNotes = Object.values(allNotes).filter(note => note?.notebook_id == notebook?.id);
-    const notebooksArr = Object.values(allNotes);
+    // NOTEBOOKS STATE 
+    const allNotebooks = useSelector((state) => state.notebooksAll)
+    const userNotebooks = Object.values(allNotebooks).filter(nb => (nb?.user_id === user?.id) && nb?.id !== notebook?.id);
     
 
+
+
+
+
+// SHOW NOTEBOOK NOTE FORM 
     const showNotebookNoteForm = (noteTitle) => {
         setNotebookNoteForm(true);
         setCurrentNoteInfo(noteTitle);
     }
 
-
-
-
+// THIS USEEFFECT IS HANDLING ERRORS 
     useEffect(() => {
         const err = [];
-
         if (title.length <= 0) err.push('Notebook name must contain at least one character.')
-
+        if (title.length > 50) err.push('Notebook name must have less than 50 characters.')
         setRenameErrors(err);
-    }, [title])
+
+        const moveNoteErr = [];
+        if (moveNotebookInfo === -1) {
+            moveNoteErr.push('err');
+        }
+        
+        setMoveErrors(moveNoteErr);
 
 
+    }, [title, moveNotebookInfo])
 
 
-
-
+// THIS USE EFFECT IS HANDLING REFS 
     useEffect(() => {
         window.document.addEventListener('mousedown', (e) => {
             if (noteOptionsRef.current && !noteOptionsRef.current.contains(e.target)) {
@@ -85,12 +103,13 @@ const NotebooksPreview = ({notebook, tabindex}) => {
 
 
 
-
+// TRIGGER THE DISPLAY OF NOTEBOOK ACTION FORM
     const renameNotebookFunc = () => {
         setNotebookActions(false);
         setRenameNotebook(true);
 
     }
+// TRIGGER THE DISPLAY OF NOTEBOOK ACTION FORM
     const deleteNotebookFunc = () => {
         setNotebookActions(false);
         setDeleteNotebook(true);
@@ -120,10 +139,40 @@ const NotebooksPreview = ({notebook, tabindex}) => {
     }
 
 
-    const duplicateNotebook = async() => {
-        console.log(notebook?.title, notebook?.id)
+
+
+// DUPLICATE NOTEBOOK
+    const duplicateNotebook = async(notebook) => {
+        const data = {
+            title: notebook?.title,
+        }
+        dispatch(createSingleNotebook(data));
+        setNotebookActions(false);
+
     }
 
+
+// MOVE A NOTE FROM AN EXISTING NOTEBOOK TO ANOTHER
+    const moveNotebookTo = (notebookId) => {
+
+        dispatch(moveSingleNote(currentNoteInfo?.id, notebookId))
+        setMoveTo(false);
+        setColoredRow(true) 
+        setTimeout(() => {
+            setColoredRow(false);
+            setMoveNotebookInfo(-1);
+        }, 800)
+    }
+
+    const cancelMoveNote = () => {
+        setMoveTo(false);
+        setMoveNotebookInfo(-1);
+    }
+
+
+
+
+// CREATE A NEW NOTE BELONGING TO A SPECIFIC NOTEBOOK
     const newNotebookNote = async() => {
         const title = 'Untitled';
         const content = '';
@@ -143,21 +192,60 @@ const NotebooksPreview = ({notebook, tabindex}) => {
     }
 
 
+
+// DUPLICATE A SINGLE NOTE THAT BELONGS TO A NOTEBOOK
+    const duplicateNote = (note) => {
+        const title = note?.title;
+        const content = note?.content;
+        const description = '';
+
+        const data = {
+            title,
+            description,
+            content
+        }
+
+        dispatch(createNotebookNote(notebook?.id, data))
+        setNotebookNoteForm(false);
+    }
+
+
+
+    // REDIRECT TO SPECIFIC NOTE 
     const goToSingleNote = (noteId) => {
         history.push(`/notes/${noteId}`)
     }
 
-
+    // REDIRECT TO NOTEBOOK AND ALL NOTES WITHIN NOTEBOOK
     const goToNotebook = (notebookId) => {
        const firstNoteId = notebookNotes[0]?.id;
         history.push(`/notes/notebooks/${notebookId}/${firstNoteId}`)
         // notes/notesbooks/:notebookId/:noteId
     }
 
+    // DELETE NOTEBOOK NOTE 
+    const deleteNotebookNote = (noteId) => {
+        dispatch(deleteSingleNote(noteId));
+        setDeleteNote(false);
+    }
+
+    // TRIGGER DISPLAY OF NOTEBOOK NOTE ACTION FORM
+    const moveNotebookNoteTrigger = () => {
+        setNotebookNoteForm(false);
+        setMoveTo(true)
+    }
+
+
+    // TRIGGER DISPLAY OF NOTEBOOK NOTE ACTION FORM
+    const deleteNotebookNoteTrigger = () => {
+        setNotebookNoteForm(false);
+        setDeleteNote(true);
+    }
+
 
     return (
         <>
-        <div className='notebooks-preview-container'>
+        <div className={coloredRow ? 'notebooks-preview-container flash' : 'notebooks-preview-container'}>
             <div className='notebooks-table'>
                 <div className='nb-table-content' tabIndex={tabindex} >
                     <div className='nb-td-txt nb-td-one'>
@@ -197,10 +285,8 @@ const NotebooksPreview = ({notebook, tabindex}) => {
                     </div>
 
                     <div className='nn-row nn-row-four'>
-                                <i className='fa-solid fa-ellipsis nn-row-ellips' onClick={() => showNotebookNoteForm(note?.title)}></i>
+                                <i className='fa-solid fa-ellipsis nn-row-ellips' onClick={() => showNotebookNoteForm(note)}></i>
                     </div>
-                            
-
                 </div>
                     ))
                 }
@@ -209,18 +295,15 @@ const NotebooksPreview = ({notebook, tabindex}) => {
                     <div className='nn-options-dropdown' ref={noteOptionsRef}>
                         <div className='nn-od-row nn-odr-title'>
                         <i className="fa-solid fa-file-lines nn-odr-icon"></i>
-                        <p id='nn-od-title'>{currentNoteInfo}</p>
+                        <p id='nn-od-title'>{currentNoteInfo?.title}</p>
                         </div>
-                        <div className='nn-od-row'>
+                                <div className='nn-od-row' onClick={() => moveNotebookNoteTrigger()}>
                             <p>Move to..</p>
                         </div>
-                        <div className='nn-od-row'>
-                            <p>Copy to..</p>
-                        </div>
-                        <div className='nn-od-row'>
+                        <div className='nn-od-row' onClick={() => duplicateNote(currentNoteInfo)}>
                             <p>Duplicate</p>
                         </div>
-                        <div className='nn-od-row nn-odr-last'>
+                                <div className='nn-od-row nn-odr-last' onClick={() => deleteNotebookNoteTrigger()}>
                             <p>Delete</p>
                         </div>
                     </div>
@@ -242,7 +325,7 @@ const NotebooksPreview = ({notebook, tabindex}) => {
                 <div className='nb-actions-row' onClick={() => renameNotebookFunc()} >
                     <p>Rename notebook</p>
                 </div>
-                <div className='nb-actions-row'>
+                <div className='nb-actions-row' onClick={() => duplicateNotebook(notebook)}>
                     <p>Duplicate</p>
                 </div>
                 <div className='nb-actions-row nb-ar-last' onClick={() => deleteNotebookFunc()}>
@@ -271,15 +354,16 @@ const NotebooksPreview = ({notebook, tabindex}) => {
                         </input>
                         
                         <div className='rn-nbf-error'>
-                            { renameErrors.length > 0 && 
-                            <p id='rn-nbf-err-txt'>Notebook name must contain at least one character.</p>
+                            { renameErrors.length > 0 && renameErrors.map((err, i) => (
+                                <p id='rn-nbf-err-txt'>{err}</p>
+                            ))
                             }
                         </div>
 
                     </div>
                     <div className='rn-nbf-btns'>
                         <button type='button' id='nb-rn-btn-cancel' onClick={() => setRenameNotebook(false)}>Cancel</button>
-                        <button type='submit' className='nb-rn-btn-submit' disbaled={!!renameErrors.length}>Continue</button>
+                        <button type='submit' className={renameErrors.length > 0 ? 'nb-rn-btn-submit darken-disable' : 'nb-rn-btn-submit'} disabled={renameErrors.length > 0}>Continue</button>
                     </div>
                 </form>
             </div>
@@ -301,6 +385,59 @@ const NotebooksPreview = ({notebook, tabindex}) => {
                     <button type='submit' id='delete-nbf-submit'>Delete</button>
                     </div>
                 </form>
+            </div>
+        }
+
+
+        {   
+
+            moveTo && 
+            <div className='move-to-container'>
+                <div className='mtc-title-bar'>
+                <p id='mtc-title'>All notebooks</p>
+                </div>
+                <div className='mtc-inner'>
+                {
+                    userNotebooks.map((nb, i) => (
+                       <div key={i} className='move-to-row' tabIndex={i} onClick={() => setMoveNotebookInfo(nb?.id)}>
+                            <i className="fa-solid fa-book nb-th-notebook"></i>
+                            <p>{nb?.title}</p>
+                        </div>
+                    ))
+                }
+                        <div className='move-to-row current-nb'>
+                            <i className="fa-solid fa-book nb-th-notebook"></i>
+                            <p>{notebook?.title} (current)</p>
+                        </div>
+                </div>
+                        <div className='confirm-row-mtc'>
+                            <div className='confirm-row-mtc-err'>
+                                { moveErrors.length > 0 &&
+                                <p id='mtc-err-txt'>Please select a notebook to move this note to.</p>
+                                }
+                            </div>
+                            <div className='confirm-row-mtc-btns'>
+                            <button id='mtc-cancel-btn'onClick={() => cancelMoveNote()}>Cancel</button>
+                            <button id={moveErrors.length ? 'mtc-submit-btn darken-disable' : 'mtc-submit-btn'} onClick={() => moveNotebookTo(moveNotebookInfo)} disabled={!!moveErrors.length}>Move</button>
+                            </div>
+                        </div>
+            </div>
+        }
+
+
+        {
+            deleteNote && 
+            <div className='nn-delete-container'>
+                <div className='nn-delete-title'>
+                    <p id='nn-delete-txt'>{currentNoteInfo?.title}</p>
+                </div>
+                <div className='nn-delete-inner'>
+                    <p id='nn-delete-inner-txt'>Are you sure you want to delete this note?</p>
+                </div>
+                <div className='nn-delete-btns'>
+                    <button id='nn-delete-cancel' onClick={() => setDeleteNote(false)}>Cancel</button>
+                    <button id='nn-delete-submit' onClick={() => deleteNotebookNote(currentNoteInfo?.id)}>Delete</button>
+                </div>
             </div>
         }
 

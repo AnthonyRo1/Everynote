@@ -49,12 +49,9 @@ const HomeNotes = ({note}) => {
                 <div className='hn-c-tb-header'>
                     <p id='p-title'>{note?.title}</p>
                 </div>
-
+                    <div className='home-notes-divider'></div>
                 <div className='hn-c-tb-content'>
                     <p id='p-content'>{note?.content}</p>
-                </div>
-                <div className='hn-c-tb-footer'>
-                    <p>{getNoteTime()}</p>
                 </div>
             </div>
         </div>

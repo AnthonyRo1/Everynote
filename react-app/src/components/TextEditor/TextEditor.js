@@ -42,6 +42,7 @@ const TextEditor = () => {
 
 
 
+
     // ALL OF THE NOTE OPTIONS' STATE
     const [toggleOptions, setToggleOptions] = useState(false);
     const [toggleOptDelete, setToggleOptDelete] = useState(false);
@@ -60,6 +61,7 @@ const TextEditor = () => {
                 setToggleOptDelete(false);
             }
         })
+
     }, [])
 
 

@@ -1,11 +1,15 @@
 import './landingnav.css'
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import logos from '../../images/everynote_logo.png'
 import { useHistory } from 'react-router-dom';
-
+import { useRef } from 'react';
 
 const LandingNav = () => {
+
+    const linkLeftRef = useRef(null);
     const history = useHistory();
+    const [hoverData, setHoverData] = useState([]);
+
     const [rightLinkHovered, setRightLinkHovered] = useState(false);
     const [leftLinkHovered, setLeftLinkHovered] = useState(false)
     const [mouseOver, setMouseOver] = useState(false);
@@ -13,81 +17,67 @@ const LandingNav = () => {
 
 
 
+
     const rightLinkHover = () => {
         setMouseOver(true);
-        setRightLinkHovered(true);
+        setDropDownHovered(true);
     }
 
     const leftLinkHover = () => {
-        setMouseOver(true)
-        setLeftLinkHovered(true)
     }
 
     const rightLinkExit = () => {
-        setMouseOver(true)
-        setRightLinkHovered(false);
+        setMouseOver(false)
     }
 
     const leftLinkExit = () => {
-        setMouseOver(true)
-        setLeftLinkHovered(false)
+        setMouseOver(false)
+        setDropDownHovered(false);
     }
 
     const anyLinkHovered = leftLinkHovered || rightLinkHovered;
 
     return (
-        <div className='nav-popup-container'>
         <div className='landing-nav-container'>
-            <div className='landing-nav'>
-                
-                <div className='left-nav'>
-                    <div id='landing-logo-box'>
-                            <img id='landing-img' src={logos}></img>
-                    </div>
-                    <div id='landing-title-box'>
-                        <p id='landing-logo-text'>Everynote</p>
-                    </div>
-                    <div id='landing-links-left'>
-                            <div className={leftLinkHovered ? 'landing-link-left link-hovered ll-first' : 'landing-link-left ll-first'}>
-                                <a onMouseEnter={() => leftLinkHover()}
-                                    onMouseLeave={() => leftLinkExit()}
-                                    className={leftLinkHovered ? 'landing-link each-link-hovered' : 'landing-link'}>GITHUB</a>
-                                {!leftLinkHovered ?
-                                    <i className="fas fa-caret-down arrow-down" ></i> :
-                                    <i className="fas fa-caret-up arrow-up"></i>
-                                }
-                        </div>
-                        <div className={rightLinkHovered ? 'landing-link-left link-hovered ll-last' : 'landing-link-left ll-last'}>
-                            <a onMouseEnter={() => rightLinkHover()}
-                            onMouseLeave={() => rightLinkExit()}
-                            className={rightLinkHovered ? 'landing-link each-link-hovered' : 'landing-link'}>ABOUT</a>
-
-                            { !rightLinkHovered ?
-                            <i className="fas fa-caret-down arrow-down" ></i> :
-                             <i className="fas fa-caret-up arrow-up"></i>
-                            }
-                        </div>
-                        <div className='landing-link-left ll-last'>
-                        </div>
-                    </div>
+            <div className='landing-nav-bg'>
+            <div className='landing-nav-content'>
+                <div className='ln-c-left'>
+                <div className='logo-container'>
+                    <img src={logos}></img>
+                    <p id='logo-txt'>Everynote</p>
                 </div>
-                <div className='right-nav'>
-                    <div className='login-box'>
-                        <button id='login-nav-btn' onClick={() => history.push('/login')}>Login</button>
-                    </div>
+                <nav className='nav-container'>
+                    <ul className='nc-ul'>
+                        <li className='nc-li' onMouseEnter={() => leftLinkHover()} 
+                        
+                        >
+                            GITHUB
+                            <i className="fa-solid fa-caret-down nc-arrow-up"></i>
+                        </li>
+                        <li  className='nc-li' 
+                        onMouseEnter={() => setMouseOver(true)}
+                        onMouseLeave={() => setMouseOver(false)}
+
+                        ref={linkLeftRef}
+                        >ABOUT
+                            <i className="fa-solid fa-caret-down nc-arrow-up"></i>
+                        </li>
+                    </ul>
+                </nav>
+                </div>
+                <div className='login-area-container'>
+                        <button id='la-c-login-btn' onClick={() => history.push('/login')}>Log In</button>
                 </div>
             </div>
-        </div>{ mouseOver &&
-        <div className='landing-nav-dropdown' onMouseEnter={() => setMouseOver(true)} 
-        onMouseLeave={() => setMouseOver(false)}>
-            
-        </div>}
-            {mouseOver &&
-        <div className='landing-nav-dropdown' onMouseEnter={() => setMouseOver(true)}
-                    onMouseLeave={() => setMouseOver(false)}>
+        </div>
+        {
+            mouseOver && dropDownHovered &&
+            <div className='ln-dropdown-container' onMouseEnter={() => setDropDownHovered(true)}
+            onMouseLeave={() => setDropDownHovered(false)}
+            >
 
-        </div>}
-
+            </div>
+        }
         </div>
     )
 }

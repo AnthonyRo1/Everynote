@@ -95,7 +95,7 @@ export const moveSingleNote = (noteId, notebookId) => async dispatch => {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(noteId, notebookId)
+        body: JSON.stringify({noteId, notebookId})
     })
 
     if (res.ok) {

@@ -5,9 +5,11 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { updateSingleNote } from '../../store/notes';
-const MainTextArea = ({note}) => {
 
-    
+
+
+
+const MainTextArea = ({note}) => {
     // note title = 'get breakfast'
 
 
@@ -47,17 +49,28 @@ const MainTextArea = ({note}) => {
 
     const saveContent = () => {
 
+        const err = [];
+
+
         if ((currentNote?.title !== noteTitle) || (currentNote.content !== noteContent)) {
-        // const title = noteTitle;
-        // const content = noteContent;
+        const title = noteTitle;
+        const content = noteContent;
 
-        // const data = {
-        //     title,
-        //     content
-        // }
+        const data = {
+            title,
+            content
+        }
 
-        // dispatch(updateSingleNote(noteId, data))
-        // setBrightenBtn(false);
+        if (noteTitle.length > 50) {
+            err.push('Title may not be longer than 50 characters.')
+        } 
+
+        if (noteContent.length > 500 ) {
+            err.push('Note content may not be longer than 500 characters.')
+        }
+
+        dispatch(updateSingleNote(noteId, data))
+        setBrightenBtn(false);
         console.log("CHANGES MADE ")
         } else {
             setErrors(['error'])

@@ -9,7 +9,6 @@ import { useParams } from 'react-router-dom';
 
 const NotebookNotes = () => {
     const { noteId, notebookId } = useParams();
-    console.log(noteId);
     const user = useSelector((state) => state.session.user)
     const allNotes = useSelector((state) => state.notesAll);
     const notesArr = Object.values(allNotes);
