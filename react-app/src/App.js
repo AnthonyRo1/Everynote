@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
-// import SignUpForm from './components/auth/SignUpForm';
+import SignUpForm from './components/auth/SignUpForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import { authenticate } from './store/session';
@@ -37,7 +37,11 @@ function App() {
       <Switch>
 
         <Route path='/login' exact={true}>
-          <LoginForm />
+          <LoginForm/>
+        </Route>
+
+        <Route path='/sign-up'>
+          <SignUpForm/>
         </Route>
 
 

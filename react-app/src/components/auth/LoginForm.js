@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { useHistory } from 'react-router-dom';
 import './loginform.css';
@@ -66,13 +66,8 @@ const LoginForm = () => {
         <p id='login-title-text'>Everynote</p>
         <p id='slogan-login'>Organize everything important.</p>
       </div>
-      <div id='break-line-login'></div>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div id='lower-form-box'>
+      <div className='break-line-login'></div>
+      <div className='lower-form-box'>
       <div className='lower-form'>
         <label htmlFor='email'></label>
         <input
@@ -90,18 +85,26 @@ const LoginForm = () => {
           value={password}
           onChange={updatePassword}
         ></input>
-            <div>
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
+ {        errors.length > 0 &&   <div className='login-errors-txt-box'>
+              { errors.length > 0 && errors.map((error, ind) => (
+                <div key={ind} className='login-errors-txt'>{error}</div>
               ))}
-            </div>
+            </div>}
         <button type='submit' id='login-form-btn'>Continue</button>
+      </div>
       </div>
         <div className='bottom-form'>
         <p className='no-login-txt'>Don't have an account?</p>
         <p className='no-login-txt demo-login' onClick={() => demoLogin()}>Sign in as a Demo user</p>
+        <div className='login-or-line'>
+          <div className='lo-line-left'></div>
+          <p>or</p>
+          <div className='lo-line-right'></div>
         </div>
-      </div>
+          <NavLink to='/sign-up' className='signup-txt-login'>
+        <p className='signup-txt-login'>Sign up</p>
+        </NavLink>
+        </div>
     </form>
     </div>
   );

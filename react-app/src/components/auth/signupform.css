@@ -1,0 +1,129 @@
+.signup-form-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    background-image: radial-gradient(rgb(124 255 90 / 11%) 15%, transparent 16%),
+        radial-gradient(rgb(165 255 172 / 19%) 15%, transparent 16%);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+}
+
+
+.upper-form.login-v {
+    height: 230px;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 512px;
+    min-height: 650px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.308);
+    border-radius: 4px;
+    background-color: white;
+    z-index: 2;
+}
+
+.break-line-login.login-v {
+    position: relative;
+    bottom: 8px;
+    margin-bottom: 10px;
+}
+
+
+.lower-form-box.login-v {
+    height: 100%;
+}
+
+.lower-form.login-v {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+}
+
+.lower-form.login-v > div > input {
+    margin-bottom: 15px;
+    width: 314px;
+    height: 45px;
+    border-radius: 8px;
+    border: 2px solid rgba(180, 176, 176, 0.527);
+    outline: none;
+    padding-inline-start: 15px;
+    font-size: 16px;
+
+}
+
+
+.lower-form.login-v>div>input:focus {
+    border: 2px solid rgba(3, 173, 3, 0.151);
+}
+
+.lower-form.login-v:first-child input {
+    margin-top: 10px;
+}
+
+
+.form-bottom {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+}
+
+
+#sign-up-submit {
+    width: 314px;
+    height: 45px;
+}
+
+
+#fb-txt-b {
+    position: relative;
+    top: 5px;
+    color: rgb(99, 99, 99);
+}
+
+#fb-txt-s {
+    position: relative;
+    bottom: 12px;
+    color: rgb(0, 156, 0);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#fb-txt-s:hover {
+    color: green;
+}
+
+.each-err-su {
+    margin: 0;
+    padding: 0;
+    color: rgb(189, 63, 63);
+    transition: all 0.2s ease-in-out;
+    animation: fade-in;
+    animation-duration: 0.25s
+}
+
+#sign-up-submit {
+    background-color: #00a82d;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    transition: all 0.2s ease-in-out;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+#sign-up-submit:hover {
+    background-color: #009427;
+}

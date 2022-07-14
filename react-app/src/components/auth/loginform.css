@@ -52,7 +52,7 @@
     flex-direction: column;
     align-items: center;
     width: 512px;
-    min-height: 600px;
+    min-height: 650px;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.308);
     border-radius: 4px;
     background-color: white;
@@ -69,20 +69,18 @@
     width: 100%;
 } 
 
-#break-line-login {
+.break-line-login {
     width: 300px;
     height: 1px;
     background-color: #ababab;
 }
 
-#lower-form-box {
+.lower-form-box {
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    height: 200px;
     justify-content: center;
     align-items: center;
-    flex: auto;
-    width: 100%;
-    height: 100%;
 }
 
 .lower-form {
@@ -108,6 +106,7 @@
     font-size: 16px;
     letter-spacing: .5px;
     line-height: 1.35;
+    padding-inline-start: 15px;
 }
 
 #form-logo {
@@ -147,13 +146,33 @@
     background-color: #018d26;
 }
 
-.bottom-form {
-    justify-self: flex-end;
+.login-errors-txt-box {
     display: flex;
-    flex: .2;
+    flex-direction: column;
+    justify-content: center;
+    height: 40px;
+    animation: grow-in-slow;
+    animation-duration: 0.25s;
+}
+
+.login-errors-txt {
+    font-size: 14px;
+    color: rgb(167, 67, 67);
+
+}
+
+@keyframes grow-in-slow {
+    from {
+        height: 0px;
+    }
+}
+
+.bottom-form {
+    flex: auto;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-evenly;
     height: 100%;
     width: 100%;
 }
@@ -164,6 +183,8 @@
     letter-spacing: 0px;
     font-size: 13.5px;
     color: #737373;
+    padding: 0;
+    margin: 0;
 }
 
 .demo-login {
@@ -172,17 +193,51 @@
     letter-spacing: 0px;
     font-size: 14px;
     color: #00a82d;
-    position: relative;
-    bottom: 15px;
     transition: all 0.1s ease;
     cursor: pointer;
+    padding: 0;
+    margin: 0;
 }
+
 
 .demo-login:hover {
     color: #018d26;
 }
 
+.login-or-line {
+    display: flex;
+    width: 100%;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    color: rgba(99, 99, 99, 0.726);
+}
 
+
+.lo-line-left {
+    width: 140px;
+    height: 1px;
+    background-color: rgba(99, 99, 99, 0.726);
+    margin-right: 4px;
+
+}
+
+
+.signup-txt-login {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: #00a02b;
+    text-decoration: none;
+}
+
+
+.lo-line-right {
+    margin-left: 4px;
+    width: 140px;
+    height: 1px;
+    background-color: rgba(99, 99, 99, 0.726);
+}
 @media only screen and (max-height: 512px) {
 
 

@@ -29,6 +29,11 @@
 .logo-container {
     display: flex;
     align-items: center;
+    
+}
+
+.logo-container > img {
+    -webkit-user-drag: none;
 }
 
 #logo-txt {
@@ -38,6 +43,8 @@
     font-weight: 800;
     padding: 0;
     margin: 0;
+    cursor: default;
+    -webkit-user-drag: none;
 }
 
 
