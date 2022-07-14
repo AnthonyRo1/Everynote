@@ -34,6 +34,10 @@
     cursor: pointer;
 }
 
+.no-c-row.last {
+    border-bottom: none;
+}
+
 .no-c-row:hover {
     background-color: rgba(128, 128, 128, 0.342);
 }

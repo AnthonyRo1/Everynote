@@ -53,6 +53,7 @@ const MainTextArea = ({note}) => {
 
 
         if ((currentNote?.title !== noteTitle) || (currentNote.content !== noteContent)) {
+
         const title = noteTitle;
         const content = noteContent;
 
@@ -60,7 +61,7 @@ const MainTextArea = ({note}) => {
             title,
             content
         }
-
+        const err = [];
         if (noteTitle.length > 50) {
             err.push('Title may not be longer than 50 characters.')
         } 
@@ -68,10 +69,13 @@ const MainTextArea = ({note}) => {
         if (noteContent.length > 500 ) {
             err.push('Note content may not be longer than 500 characters.')
         }
+        setErrors(err);
 
-        dispatch(updateSingleNote(noteId, data))
-        setBrightenBtn(false);
-        console.log("CHANGES MADE ")
+        if (err.length === 0) {
+            dispatch(updateSingleNote(noteId, data))
+            setBrightenBtn(false);
+        }
+    
         } else {
             setErrors(['error'])
         }

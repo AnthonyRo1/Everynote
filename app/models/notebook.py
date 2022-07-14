@@ -19,7 +19,7 @@ class Notebook(db.Model):
     #RELATIONSHIPS
     users = db.relationship('User', back_populates='notebooks', foreign_keys='Notebook.user_id')
 
-    notes = db.relationship('Note', back_populates='notebooks', foreign_keys='Note.notebook_id')
+    notes = db.relationship('Note', back_populates='notebooks', foreign_keys='Note.notebook_id', cascade='all, delete')
     #RELATIONSHIPS 
 
     #TO_DICT

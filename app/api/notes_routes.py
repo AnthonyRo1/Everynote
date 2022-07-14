@@ -10,7 +10,7 @@ note_routes = Blueprint('notes', __name__)
 @note_routes.route('')
 def get_notes():
     notes = Note.query.all()
-    return {'notes': [note.to_dict() for note in notes]}
+    return {'notes': [note.to_dict() for note in notes if note.user_id == current_user.id]}
 
 
 # GET ALL NOTES BELONGING TO A NOTEBOOK 

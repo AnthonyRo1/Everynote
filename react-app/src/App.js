@@ -54,8 +54,6 @@ function App() {
           <LandingPage/>
         </Route>
 
-
-
       </Switch>
     </BrowserRouter>
   );

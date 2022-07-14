@@ -16,7 +16,7 @@ const RightSideBar = () => {
 
 
 
-    const allUserNbNotes = notesArr.filter(notes => (notes?.notebook_id == notebookId));
+    const allUserNbNotes = notesArr.filter(notes => (notes?.notebook_id == notebookId)).reverse();
     const allNotebooks = useSelector((state) => state.notebooksAll);
     const notebooksArr = Object.values(allNotebooks);
     

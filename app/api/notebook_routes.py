@@ -10,7 +10,7 @@ notebook_routes = Blueprint('notebooks', __name__)
 @notebook_routes.route('')
 def get_notebooks():
     notebooks = Notebook.query.all()
-    return {'notebooks': [notebook.to_dict() for notebook in notebooks]}
+    return {'notebooks': [notebook.to_dict() for notebook in notebooks if notebook.user_id == current_user.id]}
 
 
 

@@ -50,13 +50,17 @@ const GlobalSidebar = () => {
         }
 
         if (notebookId) {
-         dispatch(createNotebookNote(notebookId, data));
+
+         const note = await dispatch(createNotebookNote(notebookId, data));
+            history.push(`/notes/${note?.id}`)
         } else if (!noteId) {
            const note = await dispatch(createSingleNote(data))
+           
             history.push(`/notes/${note?.id}`)
         }
         else {
-            dispatch(createSingleNote(data))
+           const note = await dispatch(createSingleNote(data))
+            history.push(`/notes/${note?.id}`)
         }
 
         setShowNewNote(false);
