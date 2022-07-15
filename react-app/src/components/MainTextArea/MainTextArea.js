@@ -12,7 +12,6 @@ import { updateSingleNote } from '../../store/notes';
 const MainTextArea = ({note}) => {
     // note title = 'get breakfast'
 
-
     // state should have === 'get breakfast'
 
     // if state changes ? record the changes
@@ -22,30 +21,29 @@ const MainTextArea = ({note}) => {
     const dispatch = useDispatch();
 
     const {noteId} = useParams();
-    console.log(noteId, 'MAIN TEXT AREA');
     const {notebookId} = useParams();
     const allNotes = useSelector((state) => state.notesAll);
 
 
 
     const currentNote = Object.values(allNotes).find(note => note?.id == noteId)
-    const currentNoteTitle = currentNote?.title ? currentNote?.title : ''
-    const currentNoteContent = currentNote?.content ? currentNote?.content : ''
-    const [noteTitle, setNoteTitle] = useState(currentNoteTitle);
-    const [noteContent, setNoteContent] = useState(currentNoteContent)
+    const currentNoteTitle = noteId == undefined ? '' : currentNote?.title
+    // const currentNoteContent = currentNote?.content ? currentNote?.content : ''
+    const [noteTitle, setNoteTitle] = useState('');
+    const [noteContent, setNoteContent] = useState('')
     const [brightenBtn, setBrightenBtn] = useState(false);
     const [errors, setErrors] = useState([]);
     const [textareaDisabled, setTextareaDisabled] = useState(false);
     useEffect(() => {
-        if (noteId !== undefined) {
-            setNoteContent(currentNote?.content)
-            setNoteTitle(currentNote?.title)
-        } else {
+        if (currentNote !== undefined) {
+            setNoteContent(note?.content)
+            setNoteTitle(note?.title)
+        } else if (currentNote === undefined) {
             setNoteContent('');
             setNoteTitle('')
         }
         setErrors([]);
-    }, [currentNote?.id, noteId == undefined])
+    }, [currentNote?.title])
 
 
 
@@ -114,7 +112,8 @@ const MainTextArea = ({note}) => {
                 <div id='te-line'></div>
             </div>
         <div className='main-text-area-container'>
-
+{
+    currentNote &&
             <form className='text-area-main-form'>
 
                 {/* TITLE + NOTE - DIVIDER TOP */}
@@ -152,6 +151,7 @@ const MainTextArea = ({note}) => {
 
 
             </form>
+}
         </div>
     </div>
     )

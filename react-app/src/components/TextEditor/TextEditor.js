@@ -17,7 +17,6 @@ const TextEditor = () => {
     const {noteId, notebookId} = useParams();
 
 
-
     const myRef = useRef(null);
     const deleteRef = useRef(null);
 
@@ -35,6 +34,7 @@ const TextEditor = () => {
     const allMyNotes = Object.values(allNotes).filter(note => note?.user_id === user?.id);
 
     const currentNote = Object.values(allNotes).find(note => note?.id == noteId);
+    console.log(currentNote)
     const allNotebooks = useSelector((state) => state.notebooksAll);
     const notebooksArr = Object.values(allNotebooks);
     const allNbNotes = Object.values(allNotes).filter(note => String(note?.notebook_id) === notebookId);
@@ -54,6 +54,10 @@ const TextEditor = () => {
     const [toggleOptions, setToggleOptions] = useState(false);
     const [toggleOptDelete, setToggleOptDelete] = useState(false);
 
+    useEffect(() => {
+
+    }, [noteId, notebookId, currentNote])
+
 
 
 
@@ -69,7 +73,7 @@ const TextEditor = () => {
             }
         })
 
-    }, [dispatch])
+    }, [])
 
 
 
@@ -77,20 +81,18 @@ const TextEditor = () => {
 
     const handleNoteDelete = async(e) => {
         e.preventDefault();
-      const deletedNote = dispatch(deleteSingleNote(noteId));
+      const deletedNote = await dispatch(deleteSingleNote(noteId));
       
         setToggleOptDelete(false);
 if (deletedNote) {
     if (!notebookId && allMyNotes.length > 0) {
-        console.log(allMyNotes[0], 'FIRST NOTE IN LIST')
-
-        console.log(allMyNotes[allMyNotes.length - 2], 'LAST NOTE IN LIST')
+        console.log(allMyNotes.length, 'NOTES LENGTH BEFORE DELETE')
         history.push(`${allMyNotes[allMyNotes.length - 2]?.id}`)
     } else if ((notebookId && noteId) && allMyNotes.length > 0) {
+
+        console.log("HELLO")
         history.push(`${allNbNotes[allNbNotes.length - 2]?.id}`)
-    } else {
-        history.push(``)
-    }
+    } 
 }
 
 }
@@ -110,14 +112,14 @@ if (deletedNote) {
                             {
                                 currentNotesOwner ? 
                                 <i className="fa-solid fa-book nb-th-notebook"></i>
-                                :
-                            <i className="fa-solid fa-file-lines rs-h-ih-icon"></i>}
+                                : currentNote ?
+                            <i className="fa-solid fa-file-lines rs-h-ih-icon"></i> : ''}
 
                         {/* IF NOTE BELONGS TO NOTEBOOK DISPLAY LINK WITH NOTEBOOK NAME / ELSE DISPLAY NOTEBOOK NAME */}
 
 
 
-                        <p id='rs-h-ih-txt'>{notebookId ? notebooksArr.find(notebook => notebook?.id == notebookId)?.title : currentNotesOwner ? currentNotesOwner?.title : 'Note (this note does not belong to a notebook)'}
+                        <p id='rs-h-ih-txt'>{notebookId ? notebooksArr.find(notebook => notebook?.id == notebookId)?.title : currentNotesOwner ? currentNotesOwner?.title : currentNote === undefined ? 'No notes available' : 'Note'}
                         </p>
 
                         
@@ -199,9 +201,11 @@ if (deletedNote) {
 
 
             }
-
-    
+            { noteId != undefined &&
+            <Route path={['/notes/notebooks/:notebookId/:noteId', '/notes/:noteId']}>
             <MainTextArea note={currentNote}/>
+            </Route>
+            }
         </div>
     )
 }

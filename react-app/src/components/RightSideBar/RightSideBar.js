@@ -63,7 +63,7 @@ const RightSideBar = () => {
 
                 {
                     notebookId && allUserNbNotes.map((note, i) => (
-                        <Route path='/notes/:notebooks/:notebookId' key={i}>
+                        <Route path='/notes/:notebooks/:notebookId/:noteId' key={i}>
                         <NotePreview key={i} title={note?.title} content={note?.content} updated={note?.updated_at} id={note?.id} notebookId={note?.notebook_id} />
                         </Route>
                     ))

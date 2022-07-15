@@ -12,6 +12,8 @@ const GlobalSidebar = () => {
     const {noteId} = useParams();
     const newNoteRef = useRef(null);
 
+    console.log(notebookId, noteId, 'global sidebar')
+
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -52,7 +54,7 @@ const GlobalSidebar = () => {
         if (notebookId) {
 
          const note = await dispatch(createNotebookNote(notebookId, data));
-            history.push(`/notes/${note?.id}`)
+            history.push(`/notes/notebooks/${notebookId}/${note?.id}`)
         } else if (!noteId) {
            const note = await dispatch(createSingleNote(data))
            
