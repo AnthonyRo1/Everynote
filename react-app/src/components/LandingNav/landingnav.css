@@ -133,6 +133,23 @@
 }
 
 
+
+.fa-github {
+    position: relative;
+    font-size: 20px;
+}
+
+#github-link {
+    transition: all 0.2s ease-in-out;
+    color: black;
+}
+
+
+#github-link:hover {
+    color: rgb(0, 151, 0);
+}
+
+
 @keyframes fade-in-slow {
     from {
         opacity: 0;

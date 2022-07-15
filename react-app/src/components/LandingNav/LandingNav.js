@@ -48,11 +48,11 @@ const LandingNav = () => {
                 </div>
                 <nav className='nav-container'>
                     <ul className='nc-ul'>
-                        <li className='nc-li' onMouseEnter={() => leftLinkHover()} 
-                        
-                        >
+                        <li className='nc-li'>
+                                    <a id='github-link' href='https://github.com/AnthonyRo1/Everynote'>
                             GITHUB
-                            <i className="fa-solid fa-caret-down nc-arrow-up"></i>
+                            <i class="fab fa-github"></i>
+                            </a>
                         </li>
                     </ul>
                 </nav>
