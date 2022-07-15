@@ -78,15 +78,18 @@ const TextEditor = () => {
     const handleNoteDelete = async(e) => {
         e.preventDefault();
       const deletedNote = dispatch(deleteSingleNote(noteId));
+      
         setToggleOptDelete(false);
 if (deletedNote) {
-    if (!notebookId) {
+    if (!notebookId && allMyNotes.length > 0) {
         console.log(allMyNotes[0], 'FIRST NOTE IN LIST')
 
         console.log(allMyNotes[allMyNotes.length - 2], 'LAST NOTE IN LIST')
         history.push(`${allMyNotes[allMyNotes.length - 2]?.id}`)
-    } else if (notebookId && noteId) {
+    } else if ((notebookId && noteId) && allMyNotes.length > 0) {
         history.push(`${allNbNotes[allNbNotes.length - 2]?.id}`)
+    } else {
+        history.push(``)
     }
 }
 
@@ -197,7 +200,7 @@ if (deletedNote) {
 
             }
 
-            
+    
             <MainTextArea note={currentNote}/>
         </div>
     )

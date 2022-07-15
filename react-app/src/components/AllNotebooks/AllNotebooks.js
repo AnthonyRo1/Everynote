@@ -142,7 +142,6 @@ const AllNotebooks = () => {
                     <div className='nb-th-txt nb-th-one'>TITLE
                     </div>
                     <div className='nb-th-txt nb-th-two'>CREATED BY</div>
-                    <div className='nb-th-txt nb-th-three'>UPDATED</div>
                     <div className='nb-th-txt nb-th-four'>ACTIONS</div>
                 </div>
             {

@@ -21,8 +21,13 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
+      setUsernameError([])
+      setPasswordError([])
+      setEmailError([]);
       const data = await dispatch(signUp(username, email, password));
       if (data) {
+
+        console.log(data);
         for (let err of data) {
 
 
@@ -44,11 +49,13 @@ const SignUpForm = () => {
             err.push(errSplit[1])
             setPasswordError(err);
           }
-        }
+        }  
 
         console.log(emailError)
         setErrors(data)
       }
+    } else {
+      setPasswordError(['Passwords must match.'])
     }
   };
 

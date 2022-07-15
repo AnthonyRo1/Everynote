@@ -85,6 +85,7 @@ export const deleteSingleNote = (id) => async dispatch => {
     if (res.ok) {
         const deletedNote = await res.json();
         dispatch(deleteNote(deletedNote))
+        dispatch(getAllNotes())
         return deletedNote
     }
 };

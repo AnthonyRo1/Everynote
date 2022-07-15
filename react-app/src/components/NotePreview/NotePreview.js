@@ -16,7 +16,6 @@ const NotePreview = ({title, content, updated, id, notebookId}) => {
                 <p id='np-ci-maintxt'>{content}</p>
             </div>
             <div className='np-c-footer'>
-                <p id='np-cf-txt'>{updated}</p>
             </div>
         </div>
         </NavLink>

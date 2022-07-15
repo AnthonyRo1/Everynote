@@ -3,7 +3,7 @@ import './notebookspreview.css';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateSingleNotebook, deleteSingleNotebook, createSingleNotebook} from '../../store/notebook';
-import { createNotebookNote, moveSingleNote, deleteSingleNote} from '../../store/notes';
+import { createNotebookNote, moveSingleNote, deleteSingleNote, getAllNotes} from '../../store/notes';
 
 const NotebooksPreview = ({notebook, tabindex}) => {
 
@@ -44,7 +44,11 @@ const NotebooksPreview = ({notebook, tabindex}) => {
 
 
 // USE SELECTORS GETTING CURRENT STATE 
-
+    // const str = new Date(note?.created_at).toLocaleTimeString('en-US', {
+    //     hour: 'numeric',
+    //     minute: 'numeric',
+    //     hour12: true
+    // })
 
     // USER STATE 
     const user = useSelector((state) => state.session.user);
@@ -135,6 +139,7 @@ const NotebooksPreview = ({notebook, tabindex}) => {
     const deleteNotebookSubmit = (e) => {
             e.preventDefault();
             dispatch(deleteSingleNotebook(notebook?.id));
+            dispatch(getAllNotes())
             setDeleteNotebook(false);
     }
 
@@ -229,7 +234,7 @@ const NotebooksPreview = ({notebook, tabindex}) => {
 
     // REDIRECT TO SPECIFIC NOTE 
     const goToSingleNote = (noteId) => {
-        history.push(`/notes/${noteId}`)
+        history.push(`/notes/notebooks/${notebook?.id}/${noteId}`)
     }
 
     // REDIRECT TO NOTEBOOK AND ALL NOTES WITHIN NOTEBOOK
@@ -272,7 +277,6 @@ const NotebooksPreview = ({notebook, tabindex}) => {
                         {/* </NavLink> */}
                         </div>
                     <div className='nb-td-txt nb-td-two'>{user?.email}</div>
-                    <div className='nb-td-txt nb-td-three'>{notebook?.updated_at}</div>
                     <div className='nb-td-txt nb-td-four'>
                         <i className="fa-solid fa-ellipsis nb-td-actions" onClick={() => setNotebookActions(true)}></i>
                     </div>
