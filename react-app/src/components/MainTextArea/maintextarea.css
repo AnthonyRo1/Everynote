@@ -143,3 +143,22 @@
     padding: 0;
 }
 
+
+.note-err-li {
+    position: absolute;
+    list-style: none;
+    margin-left: 10px;
+    padding: 0;
+    margin: 0;
+    width: 500px;
+    color: rgb(158, 69, 69);
+    margin-left: 25px;
+    animation: fade-in;
+    animation-duration: 0.45s;
+}
+
+.note-err-li > li {
+    margin-bottom: 5px;
+    animation: fade-in;
+    animation-duration: 0.45s;
+}

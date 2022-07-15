@@ -1,3 +1,5 @@
+import { getAllNotes } from "./notes"
+
 const GET_NOTEBOOKS = 'notebooks/GET_NOTEBOOKS'
 const UPDATE_NOTEBOOK = 'notebooks/UPDATE_NOTEBOOK'
 const DELETE_NOTEBOOK = 'notebooks/DELETE_NOTEBOOK'
@@ -76,6 +78,7 @@ export const deleteSingleNotebook = (id) => async dispatch => {
     if (res.ok) {
         const notebook = await res.json()
         dispatch(deleteNotebook(notebook))
+        dispatch(getAllNotes())
     }
 }
 

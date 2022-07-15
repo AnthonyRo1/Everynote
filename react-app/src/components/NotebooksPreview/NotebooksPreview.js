@@ -139,7 +139,6 @@ const NotebooksPreview = ({notebook, tabindex}) => {
     const deleteNotebookSubmit = (e) => {
             e.preventDefault();
             dispatch(deleteSingleNotebook(notebook?.id));
-            dispatch(getAllNotes())
             setDeleteNotebook(false);
     }
 
@@ -153,7 +152,6 @@ const NotebooksPreview = ({notebook, tabindex}) => {
         }
 
        const newNotebook = await dispatch(createSingleNotebook(data));
-
 
         if (newNotebook) {
             for (let note of notebookNotes) {

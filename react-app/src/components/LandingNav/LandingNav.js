@@ -54,14 +54,6 @@ const LandingNav = () => {
                             GITHUB
                             <i className="fa-solid fa-caret-down nc-arrow-up"></i>
                         </li>
-                        <li  className='nc-li' 
-                        onMouseEnter={() => setMouseOver(true)}
-                        onMouseLeave={() => setMouseOver(false)}
-
-                        ref={linkLeftRef}
-                        >ABOUT
-                            <i className="fa-solid fa-caret-down nc-arrow-up"></i>
-                        </li>
                     </ul>
                 </nav>
                 </div>

@@ -49,6 +49,15 @@ const MainTextArea = ({note}) => {
 
 
 
+    useEffect(() => {
+        if (noteTitle.length === 49) {
+            setErrors(['(You\'ve reached the 50 character note title limit.)'])
+            setTimeout(() => {
+                setErrors([])
+            }, 4000)
+        }
+    }, [noteTitle])
+
     const trackChanges = (e) => {
         setNoteContent(e.target.value);
         setBrightenBtn(true);
@@ -73,7 +82,7 @@ const MainTextArea = ({note}) => {
         if (noteTitle.length <= 0 ) {
             err.push('Title must contain at least one character.')
         }
-        if (noteTitle.length > 50) {
+        if (noteTitle.length === 50) {
             err.push('Title may not be longer than 50 characters.')
         } 
         if (noteContent.length <= 0) {
@@ -83,6 +92,9 @@ const MainTextArea = ({note}) => {
             err.push('Note content may not be longer than 500 characters.')
         }
         setErrors(err);
+        setTimeout(() => {
+            setErrors([])
+        }, 6000)
 
         if (err.length === 0) {
             dispatch(updateSingleNote(noteId, data))
@@ -101,7 +113,7 @@ const MainTextArea = ({note}) => {
             setSavedText(false);
             setTimeout(() => {
                 setErrors([]);
-            }, 3000)
+            }, 4000)
         }
 
     }
@@ -109,17 +121,19 @@ const MainTextArea = ({note}) => {
     const handleTitle = (e) => {
         if (e.target.value.length >= 0 && e.target.value.length < 50) {
             setNoteTitle(e.target.value);
-        }
+        } 
     }
 
 
     return (
     <div className='entire-container'>
+        <ul className='note-err-li'>
         {
             errors.length > 0 && errors.map((err) => (
-                <p id='err-txt-note'>{err}</p>
+                <li>{err}</li>
             ))
         }
+        </ul>
         { savedText &&
         <div className='note-saved-box'>
         <p id='note-saved-txt'>Note saved</p>

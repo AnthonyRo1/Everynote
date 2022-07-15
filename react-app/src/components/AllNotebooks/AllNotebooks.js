@@ -59,6 +59,8 @@ const AllNotebooks = () => {
         const err = [];
         if (title.length <= 0) err.push('Your notebook name must have at least one character.')
 
+        if (title.length >= 50) err.push('Your notebook may not have more than 50 characters.')
+
         setErrors(err);
     }, [title])
 
@@ -124,8 +126,9 @@ const AllNotebooks = () => {
                         </input>
                     </div>
                     <div className='new-nbf-error-box'>
-                    {   errors.length > 0 &&              
-                    <p id='new-nbf-error'>Your notebook name must have at least one character.</p>
+                    {   errors.length > 0 && errors.map((err, i) => (
+                        <p id='new-nbf-error'>{err}</p>
+                    ))        
                     }
                     </div>
                     <div className='new-nbf-btns'>

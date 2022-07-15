@@ -1,0 +1,79 @@
+.lp-content-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+
+
+
+.laptop-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+#laptop-img {
+    width: 650px;
+    height:  500px;
+}
+
+
+.cool-stuff-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 100%;
+}
+
+
+.cool-stuff-txt {
+    height: 50%;
+    width: 100%;
+}
+
+.cool-stuff-txt.first-cs-t {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 10px;
+}
+
+
+.cool-stuff-h {
+    text-align: left;
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.cool-stuff-s {
+    text-align: left;
+    font-size: 17px;
+}
+
+
+
+.lp-footer-container {
+    width: 100%;
+    height: 300px;
+    padding-inline: 50px;
+}
+
+
+.lp-footer-logo {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    height: 120px;
+    border-bottom: 3px solid black;
+}
+
+
+#lp-f-logo-txt {
+    font-size: 30px;
+    font-family: 'Lora';
+}

@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import LandingTitle from '../LandingTitle/LandingTitle'
-
+import LandingPageContent from '../LandingPageContent/LandingPageContent'
 
 
 
@@ -24,6 +24,7 @@ const LandingPage = () => {
         <div className='landing-page-container'>
             <LandingNav/>
             <LandingTitle/>
+            <LandingPageContent/>
         </div>
     )
 }
