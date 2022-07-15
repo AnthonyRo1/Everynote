@@ -47,17 +47,26 @@
 
 .hn-c-tb-content {
     height: 100%;
-    width: 100%;
+    width: 178px;
     overflow: hidden;
+    text-overflow: ellipsis;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 
 #p-content {
-    width: 160px;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 16px;
     color: #aaaaaa;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 178px;
+    height: 190px;
 }
 
 

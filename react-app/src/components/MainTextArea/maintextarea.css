@@ -114,8 +114,32 @@
 #err-txt-note {
     margin: 0;
     padding: 0;
-    position: relative;
-    top: 38px;
+    position: absolute;
     margin-left: 10px;
     color: rgb(158, 69, 69);
+    animation: fade-in;
+    animation-duration: 0.45s;
 }
+
+.note-saved-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100px;
+    height: 38px;
+    background-color: #636363;
+    border-radius: 4px;
+    margin-left: 10px;
+    animation: fade-in;
+    animation-duration: 0.45s;
+    color: #d9d9d9;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.034);
+}
+
+
+#note-saved-txt {
+    margin: 0;
+    padding: 0;
+}
+

@@ -2,6 +2,7 @@ import './homepage.css'
 import HomeNotes from '../HomeNotes/HomeNotes';
 import {useSelector} from 'react-redux';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 const HomePage = () => {
 
     const [recent, setRecent] = useState(true);
@@ -38,14 +39,15 @@ const HomePage = () => {
             <div className='home-page-grid'>
                 <div className='grid-row'>
                     <div className='gr-header'>
+                        <NavLink to={`/notes/${notesArr[0]?.id}`}>
                         <div className='gr-h-txt'>
                         <p id='gr-h-txt'>Notes</p>
                         <i className="fas fa-chevron-right gr-right-arrow"></i>
                         </div>
+                        </NavLink>
                     </div>
                     <div className='gr-links-mid'>
-                        <p className='gr-links-txt' tabIndex={0}>Recent</p>
-                        <p className='gr-links-txt' tabIndex={1}>All</p>
+                        <p>All Notes</p>
                     </div>
                     <div className='gr-inner'>
                         <div className='gr-scroll'>

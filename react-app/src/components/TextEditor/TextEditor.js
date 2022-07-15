@@ -4,7 +4,7 @@ import './noteoptions.css'
 import LogoutButton from '../auth/LogoutButton';
 import MainTextArea from '../MainTextArea/MainTextArea';
 import Main from '../Main/Main';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, Redirect, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useHistory, Route } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
@@ -33,7 +33,7 @@ const TextEditor = () => {
     const allNotes = useSelector((state) => state.notesAll);
     const allMyNotes = Object.values(allNotes).filter(note => note?.user_id === user?.id);
 
-    const currentNote = Object.values(allNotes).find(note => note?.id == noteId);
+    const currentNote = Object.values(allNotes).find(note => String(note?.id) === noteId);
     console.log(currentNote)
     const allNotebooks = useSelector((state) => state.notebooksAll);
     const notebooksArr = Object.values(allNotebooks);
@@ -89,11 +89,13 @@ if (deletedNote) {
         console.log(allMyNotes.length, 'NOTES LENGTH BEFORE DELETE')
         history.push(`${allMyNotes[allMyNotes.length - 2]?.id}`)
     } else if ((notebookId && noteId) && allMyNotes.length > 0) {
-
+        
         console.log("HELLO")
         history.push(`${allNbNotes[allNbNotes.length - 2]?.id}`)
     } 
 }
+
+
 
 }
 
@@ -145,13 +147,6 @@ if (deletedNote) {
             {
                 toggleOptions &&
                 <div className='note-opt-container .hide-noteopt' ref={myRef}>
-                    <div className='no-c-row'>
-                        <p className='no-c-r-txt'>Move to..</p>
-                    </div>
-                    <div className='no-c-row'>
-                        <p className='no-c-r-txt'>Duplicate</p>
-                    </div>
-
                     <div className='no-c-row last' onClick={() => setToggleOptDelete(true)}>
                         <p className='no-c-r-txt'>Delete</p>
                     </div>

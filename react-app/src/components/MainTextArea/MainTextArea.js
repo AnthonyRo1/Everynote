@@ -1,7 +1,7 @@
 import './maintextarea.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { updateSingleNote } from '../../store/notes';
@@ -34,7 +34,9 @@ const MainTextArea = ({note}) => {
     const [brightenBtn, setBrightenBtn] = useState(false);
     const [errors, setErrors] = useState([]);
     const [textareaDisabled, setTextareaDisabled] = useState(false);
+    const [savedText, setSavedText] = useState(false);
     useEffect(() => {
+
         if (currentNote !== undefined) {
             setNoteContent(note?.content)
             setNoteTitle(note?.title)
@@ -85,10 +87,21 @@ const MainTextArea = ({note}) => {
         if (err.length === 0) {
             dispatch(updateSingleNote(noteId, data))
             setBrightenBtn(false);
+            setSavedText(true);
+            setErrors([]);
+            setTimeout(() => {
+                setSavedText(false);
+            }, 3000)
+
         }
     
         } else {
+            
             setErrors(['You must make changes to this note before saving.'])
+            setSavedText(false);
+            setTimeout(() => {
+                setErrors([]);
+            }, 3000)
         }
 
     }
@@ -106,6 +119,11 @@ const MainTextArea = ({note}) => {
             errors.length > 0 && errors.map((err) => (
                 <p id='err-txt-note'>{err}</p>
             ))
+        }
+        { savedText &&
+        <div className='note-saved-box'>
+        <p id='note-saved-txt'>Note saved</p>
+        </div>
         }
         <button className={brightenBtn ? 'save-text-button brighten' : 'save-text-button'} onClick={() => saveContent()}>Save</button>
             <div className='te-divider'>

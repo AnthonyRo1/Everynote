@@ -60,6 +60,13 @@
     align-items: center;
     width: 75px;
     justify-content: space-between;
+    transition: all 0.25s ease-in-out;
+}
+
+
+.gr-h-txt:hover {
+   transform: scale(1.05);
+   text-shadow: 0px 4px 10px black;
 }
 
 

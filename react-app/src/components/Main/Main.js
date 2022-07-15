@@ -3,7 +3,7 @@ import LogoutButton from '../auth/LogoutButton';
 import GlobalSidebar from '../GlobalSidebar/GlobalSidebar';
 import RightSideBar from '../RightSideBar/RightSideBar';
 import TextEditor from '../TextEditor/TextEditor';
-import { Route } from 'react-router-dom';
+import { Redirect, Route, useParams } from 'react-router-dom';
 import AllNotebooks from '../AllNotebooks/AllNotebooks';
 import NotebookNotes from '../NotebookNotes/NotebookNotes';
 import { getAllNotebooks } from '../../store/notebook';
@@ -17,6 +17,19 @@ const Main = () => {
         dispatch(getAllNotes())
         dispatch(getAllNotebooks())
     }, [])
+
+    const {notebookId, noteId} = useParams();
+    
+    if (notebookId !== undefined && noteId === "undefined") {
+       return <Redirect to={`/notes/notebooks/${notebookId}`}/>
+    }
+
+    if (notebookId === undefined && noteId === "undefined") {
+        return <Redirect to={`/notes`}/>
+    }
+
+
+
     return (
         <div className='main-container'>
             <GlobalSidebar/>
