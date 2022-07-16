@@ -71,31 +71,18 @@ The backend routes shown above were created with a database structure in mind wh
 I centered my Database around the relationship between Notes, Notebooks, and of course Users. Each 'Notebook' can contain many notes, and each user can have many notes/notebooks. 
 
 
-Database Schema: 
+## Database Schema: 
 ***
 ![EvernoteFinalSchema](https://user-images.githubusercontent.com/59547636/179323793-eb718027-f2eb-489d-a010-337b869d159c.JPG)
 ***
  
 # React Component structure
 ***
-App
-├── LandingPage
-│   ├── LandingNav
-│   │   └── Navbar
-│   ├── LandingTitle
-│   └── LandingContent
-└── Main
-    ├── HomePage
-    │   └── HomeNotes
-    ├── GlobalSideBar
-    ├── RightSideBar
-    │   └── NotesPreview
-    ├── TextEditor
-    │   └── MainTextArea
-    └── AllNoteBooks
-        └── NotebooksPreview
+![component_structure_everynote](https://user-images.githubusercontent.com/59547636/179325624-3584fb1b-8a10-4c4d-bd5f-fae3064fbf0f.PNG)
 ***
-# React Components Descriptions (General Summary)
+
+
+## React Components Descriptions (General Summary)
 *** 
 * Landing Page - Contains the contents of the landing page, this component renders three other components which were split up into: Navbar (LandingNav), LandingTitle (Header),
 LandingContent (Main content + footer)
@@ -114,9 +101,10 @@ LandingContent (Main content + footer)
   each specific notebook. Much like RightSideBar, this component iterates through the notebooks-state and passes down props for each iteration.
   * NotebooksPreview - This component is a direct child of AllNotebooks. This component is rich with functionality, handling moving notes to another notebook, deleting notebooks,
   duplicating notebooks, editing notebooks, and displaying all notes belonging to each notebook. 
+***
 
-
-Difficulties and Challanges:
+## Difficulties and Challanges:
+***
 I would say that the most difficult aspect of this application was managing the data flow between each component, as well as rendering each component having multiple routes. 
 Making sure that the data being passed down as props to a child component is going to display the most relevant data and mount at the correct time is a design choice that can 
 effect the capabilities of your application, and handling this difficulty alone can be a challenge in itself! I would say that the process of making corrections to the overall
@@ -124,3 +112,28 @@ structure of my components, as well as fixing minor issues with the data-flow of
 it's direct relationship to the backend/Redux store.
 I also learned a lot about general UI interactions with react and the effectiveness of different use-cases for hooks when a component initially renders, or manipulating how a component renders based on a form pop-up, or 
 dynamic design such as animations, css changes, updating data without refreshing, and much more.
+***
+
+
+
+## Application Layout (screenshots)
+* Landing Page 
+![everynote_splash](https://user-images.githubusercontent.com/59547636/179326026-a45ce356-9fa9-46fe-a813-c2332b151320.PNG)
+***
+* Signup Page 
+![everynote_signup](https://user-images.githubusercontent.com/59547636/179326182-f23cdb7b-2358-45e6-b6f9-12a38063c1ae.PNG)
+***
+* Login 
+![everynote_login](https://user-images.githubusercontent.com/59547636/179326202-5496889e-76ad-48fa-8fe9-05c285c04c08.PNG)
+***
+* Home Page 
+![everynote_homepage](https://user-images.githubusercontent.com/59547636/179326036-8f720293-ead8-4820-9d45-620bf56de63a.PNG)
+***
+* Notes Page + Text editor
+![everynote_texteditor](https://user-images.githubusercontent.com/59547636/179326060-53fc231d-2690-4a41-bb0b-3fcda5be6610.PNG)
+*** 
+* Notebooks List Page 
+![everynote_notebooks_page](https://user-images.githubusercontent.com/59547636/179326096-3b169a32-5626-4694-8922-f15aa15b2df7.PNG)
+***
+
+
