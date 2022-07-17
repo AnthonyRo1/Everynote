@@ -84,7 +84,7 @@ const GlobalSidebar = () => {
                 <div className='sidebar-userinfo'>
                     <div id='sb-icon-box' onClick={() => showProfileInfo()}>
                         <div id='sb-user-icon'>
-                            <p id='email-first-letter'>{user?.email[0]}</p>
+                            <p id='email-first-letter'>{(user?.email[0]).toUpperCase()}</p>
                         </div>
                         <p id='sb-email'>{user?.email}</p>
                         <i className="fa-solid fa-angle-down sbt-angle-down"></i>
