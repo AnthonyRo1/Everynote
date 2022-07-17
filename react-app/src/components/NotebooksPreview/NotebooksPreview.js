@@ -298,9 +298,6 @@ const NotebooksPreview = ({notebook, tabindex}) => {
                     <div className='nn-row nn-row-two'>
 
                     </div>
-                    <div className='nn-row nn-row-three'>
-                        <p className='nn-row-txt'>{note?.updated_at}</p>
-                    </div>
 
                     <div className='nn-row nn-row-four'>
                                 <i className='fa-solid fa-ellipsis nn-row-ellips' onClick={() => showNotebookNoteForm(note)}></i>
