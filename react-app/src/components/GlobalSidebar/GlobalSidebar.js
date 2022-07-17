@@ -11,7 +11,7 @@ const GlobalSidebar = () => {
     const {notebookId} = useParams();
     const {noteId} = useParams();
     const newNoteRef = useRef(null);
-
+    const profileRef = useRef(null);
     console.log(notebookId, noteId, 'global sidebar')
 
 
@@ -21,7 +21,7 @@ const GlobalSidebar = () => {
     // const [showCreateNote, setShowCreateNote] = useState(false);
     // const [showCreateBtn, setShowCreateBtn] = useState(false);
     const [showNewNote, setShowNewNote] = useState(false);
-
+    const [profileInfo, setProfileInfo] = useState(false);
 
     // const [userHasNotes, setUserHasNotes] = useState(0);
     const allNotes = useSelector((state) => state.notesAll);
@@ -34,6 +34,10 @@ const GlobalSidebar = () => {
         window.document.addEventListener('mousedown', (e) => {
             if (newNoteRef.current && !newNoteRef.current.contains(e.target)) {
                 setShowNewNote(false);
+            }
+
+            if (profileRef.current && !profileRef.current.contains(e.target)) {
+                setProfileInfo(false)
             }
         })
     }, [])
@@ -70,21 +74,34 @@ const GlobalSidebar = () => {
         
     }
 
+    const showProfileInfo = () => {
+        setProfileInfo(true);
+    }
 
     return (
         <div className='global-sidebar-container'>
             <div className='sidebar-top' >
                 <div className='sidebar-userinfo'>
-                    <div id='sb-icon-box'>
+                    <div id='sb-icon-box' onClick={() => showProfileInfo()}>
                         <div id='sb-user-icon'>
+                            <p id='email-first-letter'>{user?.email[0]}</p>
                         </div>
                         <p id='sb-email'>{user?.email}</p>
                         <i className="fa-solid fa-angle-down sbt-angle-down"></i>
                     </div>
+                    {
+                        profileInfo && 
+                        <div className='profile-info-box' ref={profileRef}>
+                            <div className='pi-b-inner'>
+                                <p id='pi-bi-header'>Account</p>
+                                <div className='pi-bi-user'>
+                                <p className='pi-bi-txt'>{user?.username}</p>
+                                <p className='pi-bi-txt'>{user?.email}</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
-                    <div id='sb-gear-box'>
-                    <i className="fa-solid fa-gear sb-gear"></i>
-                    </div>
             </div>
             <div className='user-newnote-divider'></div>
             <div className='sidebar-new-note'>
@@ -107,6 +124,9 @@ const GlobalSidebar = () => {
                     </form>
                 </div>
                 }
+
+
+
 
 
             </div>
