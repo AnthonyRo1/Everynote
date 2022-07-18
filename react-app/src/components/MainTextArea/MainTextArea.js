@@ -1,5 +1,5 @@
 import './maintextarea.css'
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -25,6 +25,7 @@ const MainTextArea = ({note}) => {
     const allNotes = useSelector((state) => state.notesAll);
 
 
+    const noteContentRef = useRef(null);
 
     const currentNote = Object.values(allNotes).find(note => note?.id == noteId)
     const currentNoteTitle = noteId == undefined ? '' : currentNote?.title
@@ -124,6 +125,13 @@ const MainTextArea = ({note}) => {
         } 
     }
 
+    const submitter = (e) => {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            noteContentRef.current.focus()
+        }
+    }
+
 
     return (
     <div className='entire-container'>
@@ -146,7 +154,7 @@ const MainTextArea = ({note}) => {
         <div className='main-text-area-container'>
 {
     currentNote &&
-            <form className='text-area-main-form'>
+            <form className='text-area-main-form' onSubmit={submitter}>
 
                 {/* TITLE + NOTE - DIVIDER TOP */}
                 <div className='text-area-divider te-d-top'>
@@ -161,7 +169,7 @@ const MainTextArea = ({note}) => {
                 onChange={(e) => {
                     handleTitle(e)
                 }}
-                >
+                onKeyDown={(e) => submitter(e)}>
                 </textarea>
                 </div>
 
@@ -177,6 +185,7 @@ const MainTextArea = ({note}) => {
                 placeholder='Start writing a new note.'
                 value={noteContent}
                 onChange={(e) => trackChanges(e)}
+                ref={noteContentRef}
                 >
                 </textarea>
                 </div>

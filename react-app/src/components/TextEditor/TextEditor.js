@@ -43,7 +43,7 @@ const TextEditor = () => {
     const currentNotesOwner = notebooksArr.find(notebook => notebook?.id === currentNote?.notebook_id);
 
 
-
+    const notebookTitle = notebooksArr.find(notebook => notebook?.id == notebookId)?.title;
  // FIND THE NOTE ABOVE (ONE BEHIND) THE CURRENT NOTE;
 
 
@@ -86,12 +86,23 @@ const TextEditor = () => {
         setToggleOptDelete(false);
 if (deletedNote) {
     if (!notebookId && allMyNotes.length > 0) {
-        console.log(allMyNotes.length, 'NOTES LENGTH BEFORE DELETE')
-        history.push(`${allMyNotes[allMyNotes.length - 2]?.id}`)
+        const allNotes = allMyNotes.reverse();
+        const noteDeletedIndex = allMyNotes.reverse().map(note => note?.id).indexOf(deletedNote?.id)
+
+        if (noteDeletedIndex > 0) {
+            history.push(`${allNotes[noteDeletedIndex - 1]?.id}`)
+        } else if (noteDeletedIndex === 0) {
+            history.push(`${allNotes[noteDeletedIndex + 1]?.id}`)
+        }
     } else if ((notebookId && noteId) && allMyNotes.length > 0) {
-        
-        console.log("HELLO")
-        history.push(`${allNbNotes[allNbNotes.length - 2]?.id}`)
+        const allNotesNb = allNbNotes.reverse();
+        const noteDeletedIndex = allNotesNb.reverse().map(note => note?.id).indexOf(deletedNote?.id);
+
+        if (noteDeletedIndex > 0) {
+            history.push(`${allNotesNb[noteDeletedIndex - 1]?.id}`)
+        } else if (noteDeletedIndex === 0) {
+            history.push(`${allNotesNb[noteDeletedIndex + 1]?.id}`)
+        }
     } 
 }
 
@@ -121,8 +132,19 @@ if (deletedNote) {
 
 
 
-                        <p id='rs-h-ih-txt'>{notebookId ? notebooksArr.find(notebook => notebook?.id == notebookId)?.title : currentNotesOwner ? currentNotesOwner?.title : currentNote === undefined ? 'No notes available' : 'Note'}
+                        <p id='rs-h-ih-txt'>{notebookId ? notebookTitle : currentNotesOwner ? currentNotesOwner?.title : currentNote === undefined ? '' : 'Note'}
                         </p>
+                        {
+                            notebookId && allNbNotes.length === 0 ?
+                            <p id='no-nbs-txt'>(This notebook is empty)</p> :
+                            <p></p>
+                        }
+
+                        {
+                            (allMyNotes.length === 0) && (!notebookId)  ? 
+                            <p id='no-notes-txt'>(No notes to available)</p> :
+                            <p></p>
+                        }
 
                         
                         

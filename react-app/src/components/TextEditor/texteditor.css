@@ -28,7 +28,6 @@
     display: flex;
     width: 100%;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     border-left: 1px solid #bbbbbba2;
     padding-inline-start: 5px;
@@ -36,15 +35,13 @@
 }
 
 #rs-h-ih-txt {
-    margin-right: auto;
-    justify-self: flex-end;
+    display: inline-block;
 }
 
 
 .menu-dots {
-    position: relative;
+    position: absolute;
     right: 15px;
-    bottom: 8px;
     border-radius: 4px;
     height: 20px;
     width: 20px;
@@ -100,3 +97,14 @@
 }
 
 
+#no-notes-txt {
+    position: absolute;
+    left: 25px;
+    font-size: 18px;
+}
+
+
+#no-nbs-txt {
+    margin-left: 20px;
+    font-size: 16px;
+}
