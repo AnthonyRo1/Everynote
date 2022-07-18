@@ -148,7 +148,7 @@ const NotebooksPreview = ({notebook, tabindex}) => {
 // DUPLICATE NOTEBOOK
     const duplicateNotebook = async(notebook) => {
         const data = {
-            title: notebook?.title + ' (duplicate notebook)',
+            title: notebook?.title,
         }
 
        const newNotebook = await dispatch(createSingleNotebook(data));

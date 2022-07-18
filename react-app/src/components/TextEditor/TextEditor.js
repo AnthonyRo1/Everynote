@@ -142,7 +142,7 @@ if (deletedNote) {
 
                         {
                             (allMyNotes.length === 0) && (!notebookId)  ? 
-                            <p id='no-notes-txt'>(No notes to available)</p> :
+                            <p id='no-notes-txt'>(No notes available)</p> :
                             <p></p>
                         }
 

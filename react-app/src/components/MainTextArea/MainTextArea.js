@@ -36,6 +36,7 @@ const MainTextArea = ({note}) => {
     const [errors, setErrors] = useState([]);
     const [textareaDisabled, setTextareaDisabled] = useState(false);
     const [savedText, setSavedText] = useState(false);
+    const [noteLimit, setNoteLimit] = useState('');
     useEffect(() => {
 
         if (currentNote !== undefined) {
@@ -57,7 +58,17 @@ const MainTextArea = ({note}) => {
                 setErrors([])
             }, 4000)
         }
+
+        
     }, [noteTitle])
+
+
+
+    useEffect(() => {
+
+        setNoteLimit(500 - noteContent.length)
+        
+    }, [noteContent])
 
     const trackChanges = (e) => {
         setNoteContent(e.target.value);
@@ -160,7 +171,6 @@ const MainTextArea = ({note}) => {
                 <div className='text-area-divider te-d-top'>
                 </div>
 
-
                 {/* NOTE TITLE */}
                 <div className='top-txt-container'>
                 <textarea id='text-editor-title'
@@ -178,7 +188,7 @@ const MainTextArea = ({note}) => {
                 <div className='text-area-divider te-d-bottom'>
                 </div>
 
-
+                            <p id='note-limit-txt'>Note content character limit: <span className={noteLimit < 0 ? 'note-limit color-red' : 'note-limit'}>{noteLimit}</span></p>
                 {/* NOTE */}
                 <div className='bottom-txt-container'>
                 <textarea className='text-editor-type'
