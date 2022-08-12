@@ -1,7 +1,7 @@
 # Everynote
 
 
-## Welcome to 'Everynote', a clone of Evernote https://everynote.com 
+## Welcome to 'Everynote', a clone of Evernote https://evernote.com 
 ***
 If you'd like to see this project, you can visit https://every-note-app.herokuapp.com/
 
