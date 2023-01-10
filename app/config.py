@@ -12,3 +12,4 @@ class Config:
         'DATABASE_URL').replace('postgres://', 'postgresql://')
     SQLALCHEMY_ECHO = True
 # comment
+# comment
